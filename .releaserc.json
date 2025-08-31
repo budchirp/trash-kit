@@ -7,26 +7,26 @@
     [
       "@semantic-release/changelog",
       {
-        "changelogFile": "packages/components/CHANGELOG.md"
+        "changelogFile": "packages/ui/CHANGELOG.md"
       }
     ],
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "pnpm --filter @trash-ui/components build"
+        "prepareCmd": "pnpm --filter @trash-kit/ui build"
       }
     ],
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "packages/components"
+        "pkgRoot": "packages/ui"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": ["packages/components/package.json", "packages/components/CHANGELOG.md"],
-        "message": "chore(release): components v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "assets": ["packages/ui/package.json", "packages/ui/CHANGELOG.md"],
+        "message": "chore(release): ui v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
     "@semantic-release/github"
