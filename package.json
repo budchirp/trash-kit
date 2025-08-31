@@ -1,10 +1,10 @@
 {
-  "name": "trash-ui",
+  "name": "trash-kit",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @trash-ui/components dev",
-    "build": "pnpm --filter @trash-ui/components build"
+    "dev": "pnpm --filter @trash-kit/ui dev",
+    "build": "pnpm --filter @trash-kit/ui build"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",
