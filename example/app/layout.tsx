@@ -2,7 +2,7 @@ import type React from 'react'
 
 import type { Metadata } from 'next'
 
-import { ToastProvider } from '@trash-ui/components'
+import { ToastProvider } from '../../packages/ui/dist/index.mjs'
 
 import '@/app/globals.css'
 

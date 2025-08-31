@@ -53,7 +53,7 @@ importers:
       '@headlessui/react':
         specifier: ^2.2.7
         version: 2.2.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@trash-ui/components':
+      '@trash-kit/ui':
         specifier: link:../packages/components
         version: link:../packages/components
       lucide-react:
