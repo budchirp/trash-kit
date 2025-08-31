@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/budchirp/trash-ui/compare/components-v1.3.2...components-v1.3.3) (2025-08-29)
+
+
+### Bug Fixes
+
+* make spinner smaller ([5227d18](https://github.com/budchirp/trash-ui/commit/5227d18c5a8cdb4aba65a9b6fc492d59861c7970))
+
 ## [1.3.2](https://github.com/budchirp/trash-ui/compare/components-v1.3.1...components-v1.3.2) (2025-08-29)
 
 
