@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/budchirp/trash-kit/compare/components-v1.3.3...components-v1.3.4) (2025-08-31)
+
+
+### Bug Fixes
+
+* update dependencies in pnpm-lock.yaml ([e7ac122](https://github.com/budchirp/trash-kit/commit/e7ac122a93681f7d5178f37bba223778a14a3659))
+
 ## [1.3.2](https://github.com/budchirp/trash-ui/compare/components-v1.3.1...components-v1.3.2) (2025-08-29)
 
 
