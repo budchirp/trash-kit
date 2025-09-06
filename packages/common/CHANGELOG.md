@@ -1,3 +1,29 @@
+## [1.2.2](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.2.1...@trash-kit/common-v1.2.2) (2025-09-06)
+
+### ⚠ BREAKING CHANGES
+
+* Fixed NPM authentication setup to resolve publishing failures. This change ensures proper authentication with npm registry for all package releases.
+
+- Add NPM token authentication setup for all package releases
+- Fix EINVALIDNPMTOKEN error by properly configuring .npmrc
+- Ensure semantic-release can authenticate with npm registry
+* Removed conditional package release logic and simplified workflow to always release all packages. Changed from selective releases based on commit message to universal releases.
+
+- Remove conditional package release logic
+- Always release all packages on workflow run
+- Simplify release commands to use pnpm run release
+- Remove npm token authentication setup
+- Only build common package as prerequisite
+
+### release
+
+* restore NPM token authentication in release workflow ([6f12de9](https://github.com/budchirp/trash-kit/commit/6f12de9217fc2131152b04a5fced5f1266aeec32))
+* simplify release workflow ([cc7a586](https://github.com/budchirp/trash-kit/commit/cc7a58625e90567bb9cb956540cd09971b1e8a0a))
+
+### Miscellaneous Chores
+
+* **ci:** remove comments and optimize release workflow ([319de94](https://github.com/budchirp/trash-kit/commit/319de94a56c2a4710627965ce9e440ccc3968d5d))
+
 ## [1.2.1](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.2.0...@trash-kit/common-v1.2.1) (2025-09-06)
 
 ### ⚠ BREAKING CHANGES
