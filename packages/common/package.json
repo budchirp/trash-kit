@@ -40,7 +40,6 @@
     "build": "tsup src",
     "release": "semantic-release"
   },
-  "dependencies": {},
   "devDependencies": {
     "esbuild-plugin-preserve-directives": "^0.0.11",
     "tsup": "latest"
