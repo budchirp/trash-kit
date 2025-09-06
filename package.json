@@ -23,6 +23,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
     "semantic-release": "^24.2.7",
     "typescript": "latest"
   }
