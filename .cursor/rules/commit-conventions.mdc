@@ -70,6 +70,10 @@ docs(auth): add authentication setup guide
 chore: update pnpm to latest version
 
 perf(ui): optimize component rendering performance
+
+feat(ui, auth): add shared authentication components
+
+fix(common): resolve utility function and update ui package
 ```
 
 ### Bad Commit Messages
@@ -81,10 +85,12 @@ WIP
 ```
 
 ## Release Behavior
+- **Package name detection**: Only packages whose names appear in the commit message will be released
 - **Scoped commits** (e.g., `feat(ui):`) trigger releases for specific packages
-- **Unscoped commits** trigger releases for all packages
+- **Package name in message**: Include package name (`ui`, `auth`, `common`) in commit message to trigger release
 - **Breaking changes** use `!` after type/scope: `feat(ui)!: breaking change`
-- **Multiple packages** can be affected by a single commit
+- **Multiple packages** can be released by including multiple package names in the message
+- **Manual releases** available via GitHub Actions workflow dispatch
 
 ## Best Practices
 1. **Be descriptive**: Explain what and why, not just what

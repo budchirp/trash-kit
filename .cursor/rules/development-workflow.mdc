@@ -29,6 +29,8 @@ description: Development workflow and best practices
 2. Use conventional commits for clear history
 3. Ensure all packages build before committing
 4. Use descriptive commit messages
+5. Include package names in commit messages to trigger specific releases
+6. Use GitHub Actions for manual releases when needed
 
 ## Package Dependencies
 - Always use workspace references: `"@trash-kit/common": "workspace:*"`
@@ -37,8 +39,9 @@ description: Development workflow and best practices
 
 ## Build Optimization
 - Each package builds independently
-- No duplicate builds in release process
+- Common package is always built in release process
 - Parallel execution for faster development
+- Selective package releases based on commit message content
 
 ## Documentation
 - Update README files when adding new features

@@ -13,7 +13,8 @@
           { "type": "refactor", "scope": "common", "release": "patch" },
           { "type": "style", "scope": "common", "release": "patch" },
           { "type": "docs", "scope": "common", "release": "patch" },
-          { "type": "chore", "scope": "common", "release": "patch" }
+          { "type": "chore", "scope": "common", "release": "patch" },
+          { "type": "release", "release": "patch" }
         ]
       }
     ],

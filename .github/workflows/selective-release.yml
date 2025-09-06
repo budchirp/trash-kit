@@ -86,7 +86,11 @@ jobs:
         if: needs.detect-changes.outputs.common == 'true' || inputs.force_release_all == 'true'
         run: |
           cd packages/common
-          pnpm release
+          if [ "${{ inputs.force_release_all }}" = "true" ]; then
+            pnpm release --force
+          else
+            pnpm release
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -125,7 +129,11 @@ jobs:
       - name: Release UI package
         run: |
           cd packages/ui
-          pnpm release
+          if [ "${{ inputs.force_release_all }}" = "true" ]; then
+            pnpm release --force
+          else
+            pnpm release
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -164,7 +172,11 @@ jobs:
       - name: Release Auth package
         run: |
           cd packages/auth
-          pnpm release
+          if [ "${{ inputs.force_release_all }}" = "true" ]; then
+            pnpm release --force
+          else
+            pnpm release
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

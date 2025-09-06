@@ -19,6 +19,11 @@ description: Quick reference for commit message formats
 - `auth` - Auth package changes
 - No scope - Affects all packages
 
+## Release Triggering
+- **Package name detection**: Include package name (`ui`, `auth`, `common`) in commit message to trigger release
+- **Multiple packages**: Include multiple package names to release multiple packages
+- **Manual release**: Use GitHub Actions workflow dispatch for manual releases
+
 ## Common Examples
 
 ### UI Package
@@ -48,6 +53,13 @@ perf(auth): optimize user context updates
 chore: update dependencies to latest versions
 docs: update project README with setup instructions
 ci: fix GitHub Actions workflow configuration
+```
+
+### Multiple Packages
+```bash
+feat(ui, auth): add shared authentication components
+fix(common): resolve utility and update ui package
+docs(ui, common): update documentation for both packages
 ```
 
 ### Breaking Changes
