@@ -1,3 +1,13 @@
+## [1.2.0](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.1.1...@trash-kit/common-v1.2.0) (2025-09-06)
+
+### Features
+
+* **ci:** add manual release workflows for emergency releases ([3ae6372](https://github.com/budchirp/trash-kit/commit/3ae63721379ca56af111209a8c3c0b9f2f15ccb5))
+
+### Bug Fixes
+
+* **ci:** resolve package dependency order in release workflow ([8bd1fe5](https://github.com/budchirp/trash-kit/commit/8bd1fe5eae38b3081fc2f6a3a83afe3c736cae15))
+
 ## [1.1.1](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.1.0...@trash-kit/common-v1.1.1) (2025-09-06)
 
 ### Bug Fixes
