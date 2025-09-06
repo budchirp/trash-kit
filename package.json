@@ -1,10 +1,10 @@
 {
   "name": "trash-kit",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm --filter @trash-kit/ui dev",
-    "build": "pnpm --filter @trash-kit/ui build && pnpm --filter @trash-kit/common build && pnpm --filter @trash-kit/auth build",
+    "dev": "pnpm --parallel --filter @trash-kit/ui --filter @trash-kit/common --filter @trash-kit/auth dev",
+    "build": "pnpm --parallel --filter @trash-kit/ui --filter @trash-kit/common --filter @trash-kit/auth build",
     "release": "semantic-release",
     "release:ui": "cd packages/ui && pnpm release",
     "release:common": "cd packages/common && pnpm release",
