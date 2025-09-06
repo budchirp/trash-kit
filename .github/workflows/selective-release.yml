@@ -66,9 +66,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build UI package
-        run: pnpm --filter @trash-kit/ui build
-
       - name: Release UI package
         run: |
           cd packages/ui
@@ -103,9 +100,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Common package
-        run: pnpm --filter @trash-kit/common build
-
       - name: Release Common package
         run: |
           cd packages/common
@@ -139,9 +133,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Build Auth package
-        run: pnpm --filter @trash-kit/auth build
 
       - name: Release Auth package
         run: |

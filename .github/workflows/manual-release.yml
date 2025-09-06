@@ -53,9 +53,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build all packages
-        run: pnpm build
-
       - name: Release UI package
         if: ${{ github.event.inputs.package == 'ui' || github.event.inputs.package == 'all' }}
         run: |

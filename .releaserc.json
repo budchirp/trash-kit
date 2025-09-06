@@ -37,12 +37,6 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "pnpm --filter @trash-kit/ui build && pnpm --filter @trash-kit/common build && pnpm --filter @trash-kit/auth build"
-      }
-    ],
-    [
-      "@semantic-release/exec",
-      {
         "publishCmd": "cd packages/ui && npx semantic-release && cd ../common && npx semantic-release && cd ../auth && npx semantic-release"
       }
     ],

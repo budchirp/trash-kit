@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @trash-kit/ui dev",
-    "build": "pnpm --filter @trash-kit/ui build",
+    "build": "pnpm --filter @trash-kit/ui build && pnpm --filter @trash-kit/common build && pnpm --filter @trash-kit/auth build",
     "release": "semantic-release",
     "release:ui": "cd packages/ui && pnpm release",
     "release:common": "cd packages/common && pnpm release",
