@@ -1,3 +1,5 @@
 packages:
   - packages/ui
+  - packages/auth
+  - packages/common
   - example

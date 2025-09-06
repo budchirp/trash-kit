@@ -1,5 +1,5 @@
 {
-  "name": "@trash-kit/ui",
+  "name": "@trash-kit/common",
   "version": "1.3.2",
   "author": "budchirp <budchirp@gmail.com>",
   "license": "GPL-3.0-or-later",
@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/budchirp/trash-kit.git",
-    "directory": "packages/ui"
+    "directory": "packages/common"
   },
   "bugs": {
     "url": "https://github.com/budchirp/trash-kit/issues"
@@ -40,20 +40,13 @@
     "build": "tsup src",
     "release": "semantic-release"
   },
-  "dependencies": {
-    "@trash-kit/common": "workspace:*",
-    "class-variance-authority": "^0.7.1",
-    "sonner": "^2.0.7",
-    "tailwind-merge": "^3.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "esbuild-plugin-preserve-directives": "^0.0.11",
     "tsup": "latest"
   },
   "peerDependencies": {
     "react": ">=19",
-    "react-dom": ">=19",
-    "@headlessui/react": ">=2",
-    "lucide-react": ">=0.541.0"
+    "react-dom": ">=19"
   }
 }

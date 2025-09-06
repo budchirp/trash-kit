@@ -1,0 +1,152 @@
+name: Selective Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  detect-changes:
+    name: Detect Package Changes
+    runs-on: ubuntu-latest
+    outputs:
+      ui: ${{ steps.changes.outputs.ui }}
+      common: ${{ steps.changes.outputs.common }}
+      auth: ${{ steps.changes.outputs.auth }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            ui:
+              - 'packages/ui/**'
+              - 'packages/ui/.releaserc.json'
+            common:
+              - 'packages/common/**'
+              - 'packages/common/.releaserc.json'
+            auth:
+              - 'packages/auth/**'
+              - 'packages/auth/.releaserc.json'
+
+  release-ui:
+    name: Release UI Package
+    needs: detect-changes
+    if: needs.detect-changes.outputs.ui == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build UI package
+        run: pnpm --filter @trash-kit/ui build
+
+      - name: Release UI package
+        run: |
+          cd packages/ui
+          pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release-common:
+    name: Release Common Package
+    needs: detect-changes
+    if: needs.detect-changes.outputs.common == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Common package
+        run: pnpm --filter @trash-kit/common build
+
+      - name: Release Common package
+        run: |
+          cd packages/common
+          pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release-auth:
+    name: Release Auth Package
+    needs: detect-changes
+    if: needs.detect-changes.outputs.auth == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Auth package
+        run: pnpm --filter @trash-kit/auth build
+
+      - name: Release Auth package
+        run: |
+          cd packages/auth
+          pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

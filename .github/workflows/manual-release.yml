@@ -1,10 +1,27 @@
-name: Release
+name: Manual Release
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to release'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - ui
+          - common
+          - auth
+      version:
+        description: 'Version type (patch, minor, major)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
 
 permissions:
   contents: write
@@ -13,7 +30,7 @@ permissions:
 
 jobs:
   release:
-    name: Release
+    name: Manual Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,10 +53,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
+      - name: Build all packages
         run: pnpm build
 
       - name: Release UI package
+        if: ${{ github.event.inputs.package == 'ui' || github.event.inputs.package == 'all' }}
         run: |
           cd packages/ui
           pnpm release
@@ -48,6 +66,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release Common package
+        if: ${{ github.event.inputs.package == 'common' || github.event.inputs.package == 'all' }}
         run: |
           cd packages/common
           pnpm release
@@ -56,6 +75,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release Auth package
+        if: ${{ github.event.inputs.package == 'auth' || github.event.inputs.package == 'all' }}
         run: |
           cd packages/auth
           pnpm release

@@ -4,7 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "pnpm --filter @trash-kit/ui dev",
-    "build": "pnpm --filter @trash-kit/ui build"
+    "build": "pnpm --filter @trash-kit/ui build",
+    "release": "semantic-release",
+    "release:ui": "cd packages/ui && pnpm release",
+    "release:common": "cd packages/common && pnpm release",
+    "release:auth": "cd packages/auth && pnpm release",
+    "release:all": "pnpm release:ui && pnpm release:common && pnpm release:auth"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",

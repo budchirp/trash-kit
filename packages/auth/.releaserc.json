@@ -1,0 +1,64 @@
+{
+  "branches": ["main"],
+  "tagFormat": "@trash-kit/auth-v${version}",
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          { "type": "feat", "scope": "auth", "release": "minor" },
+          { "type": "fix", "scope": "auth", "release": "patch" },
+          { "type": "perf", "scope": "auth", "release": "patch" },
+          { "type": "refactor", "scope": "auth", "release": "patch" },
+          { "type": "style", "scope": "auth", "release": "patch" },
+          { "type": "docs", "scope": "auth", "release": "patch" },
+          { "type": "chore", "scope": "auth", "release": "patch" }
+        ]
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "types": [
+            { "type": "feat", "section": "Features" },
+            { "type": "fix", "section": "Bug Fixes" },
+            { "type": "perf", "section": "Performance Improvements" },
+            { "type": "refactor", "section": "Code Refactoring" },
+            { "type": "style", "section": "Styles" },
+            { "type": "docs", "section": "Documentation" },
+            { "type": "chore", "section": "Miscellaneous Chores" }
+          ]
+        }
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "pnpm build"
+      }
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": true
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["package.json", "CHANGELOG.md"],
+        "message": "chore(release): @trash-kit/auth v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
