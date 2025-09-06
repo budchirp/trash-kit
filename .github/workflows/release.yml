@@ -50,44 +50,26 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build
-
-      - name: Build Common Package (Always)
+      - name: Build Common Package
         run: pnpm --filter @trash-kit/common build
 
       - name: Release Common Package
-        if: contains(github.event.head_commit.message, 'common') || github.event_name == 'workflow_dispatch'
         working-directory: packages/common
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-          fi
-          pnpm release
+        run: pnpm run release
 
       - name: Release Auth Package
-        if: contains(github.event.head_commit.message, 'auth') || github.event_name == 'workflow_dispatch'
         working-directory: packages/auth
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-          fi
-          pnpm release
+        run: pnpm run release
 
       - name: Release UI Package
-        if: contains(github.event.head_commit.message, 'ui') || github.event_name == 'workflow_dispatch'
         working-directory: packages/ui
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-          fi
-          pnpm release
+        run: pnpm run release
