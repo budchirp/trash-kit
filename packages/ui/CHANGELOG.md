@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/budchirp/trash-kit/compare/@trash-kit/ui-v1.0.0...@trash-kit/ui-v1.0.1) (2025-09-06)
+
+### Miscellaneous Chores
+
+* **release:** @trash-kit/auth v1.0.0 [skip ci] ([93f7f0a](https://github.com/budchirp/trash-kit/commit/93f7f0a73f9a929de86de0ae1f3a9bccd778cde3))
+* **release:** @trash-kit/common v1.0.0 [skip ci] ([987b871](https://github.com/budchirp/trash-kit/commit/987b8714bc455c81299a14a38228f203ea35afaa))
+* streamline build process and update release workflows ([49adec8](https://github.com/budchirp/trash-kit/commit/49adec8119a0f5abb8cd25461e3a89f2f73d34e4))
+
 ## 1.0.0 (2025-09-06)
 
 ### Features
