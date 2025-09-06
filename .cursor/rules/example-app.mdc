@@ -1,0 +1,36 @@
+---
+globs: example/**/*
+---
+
+# Example Application
+
+## Overview
+The example application is a Next.js app located in [example/](mdc:example/) that demonstrates how to use the Trash Kit packages.
+
+## Key Files
+- [example/app/layout.tsx](mdc:example/app/layout.tsx) - Root layout component
+- [example/app/page.tsx](mdc:example/app/page.tsx) - Home page
+- [example/package.json](mdc:example/package.json) - Example app configuration
+- [example/next.config.ts](mdc:example/next.config.ts) - Next.js configuration
+
+## Purpose
+- Demonstrates package usage patterns
+- Provides development environment for testing
+- Shows integration examples
+- Serves as documentation through code
+
+## Development Guidelines
+1. Keep examples simple and focused
+2. Show best practices for package usage
+3. Update examples when adding new features
+4. Ensure examples work with latest package versions
+
+## Dependencies
+- Uses the workspace packages as dependencies
+- Includes Next.js for the application framework
+- Minimal external dependencies
+
+## Build Process
+- Uses Next.js build system
+- Integrates with the monorepo build process
+- Serves as a test environment for packages

@@ -1,0 +1,42 @@
+---
+globs: packages/ui/**/*
+---
+
+# UI Package Guidelines
+
+## Package Structure
+The UI package is located in [packages/ui/](mdc:packages/ui/) and contains React components.
+
+## Key Files
+- [packages/ui/src/index.ts](mdc:packages/ui/src/index.ts) - Main export file
+- [packages/ui/package.json](mdc:packages/ui/package.json) - Package configuration
+- [packages/ui/tsup.config.ts](mdc:packages/ui/tsup.config.ts) - Build configuration
+
+## Component Architecture
+- **Styling**: Uses `class-variance-authority` for variant management
+- **Utilities**: Uses `tailwind-merge` for class merging
+- **Dependencies**: Depends on `@trash-kit/common` for shared utilities
+
+## Component Development
+1. Create component in `src/components/component-name/`
+2. Follow the 4-file structure: component, styles, types, index
+3. Export from component's `index.tsx`
+4. Re-export from main `src/components/index.ts`
+
+## Styling Guidelines
+- Use Tailwind CSS classes
+- Create style variants with `class-variance-authority`
+- Use the `cn` utility from `@/utils/cn` for class merging
+- Follow the established design system patterns
+
+## Peer Dependencies
+- React >= 19
+- React DOM >= 19
+- @headlessui/react >= 2
+- lucide-react >= 0.541.0
+
+## Build Process
+- Uses tsup for building
+- Generates both ESM and CJS outputs
+- Includes TypeScript declarations
+- Builds to `dist/` directory

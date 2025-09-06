@@ -1,0 +1,105 @@
+---
+alwaysApply: true
+---
+
+# Commit Message Conventions
+
+## Conventional Commits Format
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) with semantic-release for automated versioning and releases.
+
+## Commit Message Structure
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Supported Types
+Based on the release configuration in [.releaserc.json](mdc:.releaserc.json) and package-specific configs:
+
+### Release Types
+- **`feat`**: New features (triggers minor version bump)
+- **`fix`**: Bug fixes (triggers patch version bump)
+- **`perf`**: Performance improvements (triggers patch version bump)
+- **`refactor`**: Code refactoring (triggers patch version bump)
+- **`style`**: Code style changes (triggers patch version bump)
+- **`docs`**: Documentation changes (triggers patch version bump)
+- **`chore`**: Maintenance tasks (triggers patch version bump)
+
+### Non-Release Types
+- **`test`**: Adding or updating tests
+- **`ci`**: CI/CD changes
+- **`build`**: Build system changes
+- **`revert`**: Reverting previous commits
+
+## Package Scopes
+Use package-specific scopes to target releases:
+
+### UI Package
+- `feat(ui): add new button component`
+- `fix(ui): resolve styling issue in modal`
+- `docs(ui): update component documentation`
+
+### Common Package
+- `feat(common): add new utility function`
+- `fix(common): resolve type definition issue`
+- `refactor(common): improve hook implementation`
+
+### Auth Package
+- `feat(auth): add login functionality`
+- `fix(auth): resolve session handling bug`
+- `perf(auth): optimize token validation`
+
+### Root/General Changes
+- `chore: update dependencies`
+- `docs: update README`
+- `ci: fix GitHub Actions workflow`
+
+## Examples
+
+### Good Commit Messages
+```
+feat(ui): add new Divider component with orientation support
+
+fix(common): resolve createContext hook type inference
+
+docs(auth): add authentication setup guide
+
+chore: update pnpm to latest version
+
+perf(ui): optimize component rendering performance
+```
+
+### Bad Commit Messages
+```
+Add new component
+Fixed bug
+Updated stuff
+WIP
+```
+
+## Release Behavior
+- **Scoped commits** (e.g., `feat(ui):`) trigger releases for specific packages
+- **Unscoped commits** trigger releases for all packages
+- **Breaking changes** use `!` after type/scope: `feat(ui)!: breaking change`
+- **Multiple packages** can be affected by a single commit
+
+## Best Practices
+1. **Be descriptive**: Explain what and why, not just what
+2. **Use present tense**: "add feature" not "added feature"
+3. **Keep it concise**: First line should be under 50 characters
+4. **Use body for details**: Explain the change in the body if needed
+5. **Reference issues**: Use `Closes #123` or `Fixes #456` in footer
+6. **Test before committing**: Ensure all packages build successfully
+
+## Release Notes
+Commit messages become release notes automatically:
+- **Features** → "Features" section
+- **Fixes** → "Bug Fixes" section
+- **Performance** → "Performance Improvements" section
+- **Refactoring** → "Code Refactoring" section
+- **Styles** → "Styles" section
+- **Documentation** → "Documentation" section
+- **Chores** → "Miscellaneous Chores" section

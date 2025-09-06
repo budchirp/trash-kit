@@ -1,0 +1,42 @@
+---
+globs: packages/auth/**/*
+---
+
+# Auth Package Guidelines
+
+## Package Structure
+The Auth package is located in [packages/auth/](mdc:packages/auth/) and contains authentication functionality.
+
+## Key Files
+- [packages/auth/src/index.ts](mdc:packages/auth/src/index.ts) - Main export file
+- [packages/auth/package.json](mdc:packages/auth/package.json) - Package configuration
+
+## Package Contents
+- **Context**: React context providers for authentication state
+- **Providers**: Authentication provider components
+- **Service**: Authentication service layer
+- **Types**: Authentication-related type definitions
+- **Error**: Error handling for authentication
+
+## Architecture
+- Uses React Context for state management
+- Implements service layer for API interactions
+- Provides error handling utilities
+- Depends on `@trash-kit/common` for shared utilities
+
+## Development Guidelines
+1. Keep authentication logic centralized
+2. Use proper error handling patterns
+3. Implement proper TypeScript types
+4. Follow React best practices for context usage
+
+## Build Process
+- Uses tsup for building
+- Generates both ESM and CJS outputs
+- Includes TypeScript declarations
+- Builds to `dist/` directory
+
+## Dependencies
+- Depends on `@trash-kit/common` for shared utilities
+- Minimal external dependencies
+- Focus on authentication-specific functionality
