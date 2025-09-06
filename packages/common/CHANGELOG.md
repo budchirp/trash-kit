@@ -1,3 +1,9 @@
+## [1.2.3](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.2.2...@trash-kit/common-v1.2.3) (2025-09-06)
+
+### Bug Fixes
+
+* **ci:** resolve parallel release conflicts by sequencing package releases ([bc81fe7](https://github.com/budchirp/trash-kit/commit/bc81fe7802989ff24d7e7a81f09d036b43a08514))
+
 ## [1.2.2](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.2.1...@trash-kit/common-v1.2.2) (2025-09-06)
 
 ### ⚠ BREAKING CHANGES
