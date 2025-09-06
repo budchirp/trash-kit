@@ -1,3 +1,19 @@
+## [1.2.1](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.2.0...@trash-kit/common-v1.2.1) (2025-09-06)
+
+### ⚠ BREAKING CHANGES
+
+* Changed release strategy to use package name detection in commit messages instead of explicit release tags. Updated GitHub workflow to only release packages whose names appear in commit messages. Always builds common package regardless of release status.
+
+- Replace manual release tags with package name detection
+- Update GitHub workflow for selective package releases
+- Always build common package in release process
+- Update cursor rules and documentation
+- Remove old release workflow files
+
+### release
+
+* restructure release workflow and update documentation ([2c9a622](https://github.com/budchirp/trash-kit/commit/2c9a62224b76b0f3522dae77f4b8743b3b28ff3b))
+
 ## [1.2.0](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.1.1...@trash-kit/common-v1.2.0) (2025-09-06)
 
 ### Features
