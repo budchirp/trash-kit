@@ -1,13 +1,24 @@
-name: Selective Release
+name: Manual Release All Packages
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
-      force_release_all:
-        description: 'Force release all packages regardless of changes'
+      reason:
+        description: 'Reason for manual release (e.g., "Selective release failed", "Emergency release")'
+        required: true
+        default: 'Manual release triggered'
+      skip_common:
+        description: 'Skip common package release'
+        required: false
+        default: false
+        type: boolean
+      skip_ui:
+        description: 'Skip UI package release'
+        required: false
+        default: false
+        type: boolean
+      skip_auth:
+        description: 'Skip auth package release'
         required: false
         default: false
         type: boolean
@@ -18,38 +29,9 @@ permissions:
   pull-requests: write
 
 jobs:
-  detect-changes:
-    name: Detect Package Changes
-    runs-on: ubuntu-latest
-    outputs:
-      ui: ${{ steps.changes.outputs.ui }}
-      common: ${{ steps.changes.outputs.common }}
-      auth: ${{ steps.changes.outputs.auth }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Detect changes
-        uses: dorny/paths-filter@v3
-        id: changes
-        with:
-          filters: |
-            ui:
-              - 'packages/ui/**'
-              - 'packages/ui/.releaserc.json'
-            common:
-              - 'packages/common/**'
-              - 'packages/common/.releaserc.json'
-            auth:
-              - 'packages/auth/**'
-              - 'packages/auth/.releaserc.json'
-
   release-common:
     name: Release Common Package
-    needs: detect-changes
-    if: needs.detect-changes.outputs.common == 'true' || needs.detect-changes.outputs.ui == 'true' || needs.detect-changes.outputs.auth == 'true' || inputs.force_release_all == 'true'
+    if: ${{ !inputs.skip_common }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -83,7 +65,6 @@ jobs:
           pnpm build
 
       - name: Release Common package
-        if: needs.detect-changes.outputs.common == 'true' || inputs.force_release_all == 'true'
         run: |
           cd packages/common
           pnpm release
@@ -93,8 +74,8 @@ jobs:
 
   release-ui:
     name: Release UI Package
-    needs: [detect-changes, release-common]
-    if: needs.detect-changes.outputs.ui == 'true' || inputs.force_release_all == 'true'
+    needs: release-common
+    if: ${{ !inputs.skip_ui }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -121,6 +102,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Build Common package (dependency)
+        run: |
+          cd packages/common
+          pnpm build
 
       - name: Release UI package
         run: |
@@ -132,8 +118,8 @@ jobs:
 
   release-auth:
     name: Release Auth Package
-    needs: [detect-changes, release-common]
-    if: needs.detect-changes.outputs.auth == 'true' || inputs.force_release_all == 'true'
+    needs: release-common
+    if: ${{ !inputs.skip_auth }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -161,6 +147,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Build Common package (dependency)
+        run: |
+          cd packages/common
+          pnpm build
+
       - name: Release Auth package
         run: |
           cd packages/auth
@@ -168,3 +159,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  create-summary:
+    name: Create Release Summary
+    needs: [release-common, release-ui, release-auth]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Summary
+        run: |
+          echo "## Manual Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "**Reason:** ${{ inputs.reason }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Package Release Status:" >> $GITHUB_STEP_SUMMARY
+          echo "- **Common:** ${{ needs.release-common.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **UI:** ${{ needs.release-ui.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Auth:** ${{ needs.release-auth.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow:** ${{ github.workflow }}" >> $GITHUB_STEP_SUMMARY
