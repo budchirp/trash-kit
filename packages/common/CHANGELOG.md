@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.1.0...@trash-kit/common-v1.1.1) (2025-09-06)
+
+### Bug Fixes
+
+* **ci:** improve release workflow and remove manual release ([709e263](https://github.com/budchirp/trash-kit/commit/709e263bd003b5ac5284006dc1d72aea39af5010))
+* **release:** improve release configuration and workflow ([64d8f54](https://github.com/budchirp/trash-kit/commit/64d8f54c3577d197fe5eb5ff8e35a38a0ee72aa4))
+
 ## [1.1.0](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.0.0...@trash-kit/common-v1.1.0) (2025-09-06)
 
 ### Features
