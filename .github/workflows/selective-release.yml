@@ -66,8 +66,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Release UI package
         run: |
+          # Fetch latest changes to avoid conflicts
+          git fetch origin main
+          git reset --hard origin/main
+          
           cd packages/ui
           pnpm release
         env:
@@ -100,8 +109,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Release Common package
         run: |
+          # Fetch latest changes to avoid conflicts
+          git fetch origin main
+          git reset --hard origin/main
+          
           cd packages/common
           pnpm release
         env:
@@ -134,8 +152,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Release Auth package
         run: |
+          # Fetch latest changes to avoid conflicts
+          git fetch origin main
+          git reset --hard origin/main
+          
           cd packages/auth
           pnpm release
         env:

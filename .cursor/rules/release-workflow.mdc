@@ -14,14 +14,11 @@ This project uses semantic-release with separate configurations for each package
 - [packages/auth/.releaserc.json](mdc:packages/auth/.releaserc.json) - Auth package release config
 
 ## GitHub Actions Workflows
-- [.github/workflows/release.yml](mdc:.github/workflows/release.yml) - Basic release workflow
 - [.github/workflows/selective-release.yml](mdc:.github/workflows/selective-release.yml) - Smart release (only changed packages)
-- [.github/workflows/manual-release.yml](mdc:.github/workflows/manual-release.yml) - Manual release workflow
 
 ## Release Process
-1. **Automatic**: Push to main branch triggers selective release
-2. **Manual**: Use GitHub Actions UI to choose packages to release
-3. **Individual**: Use `pnpm release:ui`, `pnpm release:common`, or `pnpm release:auth`
+1. **Automatic**: Push to main branch triggers selective release (only changed packages)
+2. **Individual**: Use `pnpm release:ui`, `pnpm release:common`, or `pnpm release:auth`
 
 ## Commit Convention
 Use conventional commits to trigger releases (see [commit-conventions.mdc](mdc:.cursor/rules/commit-conventions.mdc) for detailed guidelines):
