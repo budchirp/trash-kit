@@ -1,3 +1,24 @@
+## [1.1.0](https://github.com/budchirp/trash-kit/compare/@trash-kit/common-v1.0.0...@trash-kit/common-v1.1.0) (2025-09-06)
+
+### Features
+
+* **auth:** add comprehensive authentication system ([e5edfa2](https://github.com/budchirp/trash-kit/commit/e5edfa272c8afa8b25cca6a56c8a9136727c0e5c))
+* **common:** add shared utilities and hooks ([117deed](https://github.com/budchirp/trash-kit/commit/117deed4a45be5b25572b3b459eebaf8250b23f6))
+* **ui:** add utility exports and update dependencies ([d3ce0b1](https://github.com/budchirp/trash-kit/commit/d3ce0b1ffc307e0ce24570dfd209daf5a6c2975a))
+
+### Documentation
+
+* add comprehensive Cursor rules for monorepo development ([9b33d00](https://github.com/budchirp/trash-kit/commit/9b33d00d4e116649465a56bb015a426abaeb159f))
+* **example:** update example app configuration ([d5a0d0b](https://github.com/budchirp/trash-kit/commit/d5a0d0b26e489e7fbda8c9561e21121434929b8a))
+
+### Miscellaneous Chores
+
+* **release:** @trash-kit/auth v1.0.0 [skip ci] ([93f7f0a](https://github.com/budchirp/trash-kit/commit/93f7f0a73f9a929de86de0ae1f3a9bccd778cde3))
+* **release:** @trash-kit/ui v1.0.1 [skip ci] ([09aec43](https://github.com/budchirp/trash-kit/commit/09aec435d200b17610f0362d76faeb022be52908))
+* remove outdated release setup documentation ([e00a35b](https://github.com/budchirp/trash-kit/commit/e00a35b284abd379d5e7e93b1d93d93345cb8f76))
+* streamline build process and update release workflows ([49adec8](https://github.com/budchirp/trash-kit/commit/49adec8119a0f5abb8cd25461e3a89f2f73d34e4))
+* update root package configuration and dependencies ([d4691ee](https://github.com/budchirp/trash-kit/commit/d4691eeca9e8a8c00484b78beffe4a90c974d6df))
+
 ## 1.0.0 (2025-09-06)
 
 ### Features
