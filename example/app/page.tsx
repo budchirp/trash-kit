@@ -17,7 +17,7 @@ import {
   Section,
   Text,
   toast
-} from '../../packages/ui/dist/index.mjs'
+} from '@trash-kit/ui'
 
 const Page: React.FC = (): React.ReactNode => {
   const [checked, setChecked] = useState(false)
