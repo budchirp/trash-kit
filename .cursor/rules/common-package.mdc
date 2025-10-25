@@ -1,0 +1,40 @@
+---
+globs: packages/common/**/*
+---
+
+# Common Package Guidelines
+
+## Package Structure
+The Common package is located in [packages/common/](mdc:packages/common/) and contains shared utilities.
+
+## Key Files
+- [packages/common/src/index.ts](mdc:packages/common/src/index.ts) - Main export file
+- [packages/common/package.json](mdc:packages/common/package.json) - Package configuration
+
+## Package Contents
+- **Hooks**: React hooks like `createContext`
+- **Types**: Shared TypeScript type definitions
+- **Lib**: Utility functions and helpers
+- **Trash**: Core trash-related functionality
+
+## Usage in Other Packages
+Both UI and Auth packages depend on Common:
+```json
+"@trash-kit/common": "workspace:*"
+```
+
+## Development Guidelines
+1. Keep utilities generic and reusable
+2. Export everything through the main index file
+3. Use proper TypeScript types
+4. Follow the established patterns for hooks and utilities
+
+## Build Process
+- Uses tsup for building
+- Generates both ESM and CJS outputs
+- Includes TypeScript declarations
+- Builds to `dist/` directory
+
+## Dependencies
+- Minimal external dependencies
+- Focus on providing core functionality for other packages

@@ -1,0 +1,88 @@
+---
+globs: *.ts,*.tsx
+---
+
+# TypeScript Patterns
+
+## Import Patterns
+```typescript
+// React imports first
+import React from 'react'
+import type { FC } from 'react'
+
+// Third-party libraries
+import { cn } from 'tailwind-merge'
+
+// Internal imports with @/ aliases
+import { Button } from '@/components/button'
+import type { ButtonProps } from '@/components/button/types'
+```
+
+## Component Definition Pattern
+```typescript
+import type React from 'react'
+
+import type { ComponentProps } from '@/components/component/types'
+
+export const Component: React.FC<ComponentProps> = ({
+  className,
+  ...props
+}: ComponentProps): React.ReactElement => {
+  return <div className={cn('base-classes', className)} {...props} />
+}
+```
+
+## Type Definition Pattern
+```typescript
+import type { ReactNode } from 'react'
+
+export type ComponentProps = {
+  children?: ReactNode
+  className?: string
+  variant?: 'primary' | 'secondary'
+} & React.HTMLAttributes<HTMLDivElement>
+```
+
+## Hook Pattern
+```typescript
+import { useState, useEffect } from 'react'
+
+export const useCustomHook = (initialValue: string) => {
+  const [value, setValue] = useState(initialValue)
+  
+  useEffect(() => {
+    // Effect logic
+  }, [value])
+  
+  return { value, setValue }
+}
+```
+
+## Service Pattern
+```typescript
+export class ServiceClass {
+  private baseUrl: string
+  
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl
+  }
+  
+  async fetchData(): Promise<DataType> {
+    // Implementation
+  }
+}
+```
+
+## Error Handling Pattern
+```typescript
+export class CustomError extends Error {
+  constructor(
+    message: string,
+    public code: string,
+    public statusCode?: number
+  ) {
+    super(message)
+    this.name = 'CustomError'
+  }
+}
+```

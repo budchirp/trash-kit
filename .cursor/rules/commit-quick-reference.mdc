@@ -1,0 +1,74 @@
+---
+description: Quick reference for commit message formats
+---
+
+# Commit Message Quick Reference
+
+## Format Template
+```
+<type>(<scope>): <description>
+
+<optional body>
+
+<optional footer>
+```
+
+## Package Scopes
+- `ui` - UI package changes
+- `common` - Common package changes  
+- `auth` - Auth package changes
+- No scope - Affects all packages
+
+## Release Triggering
+- **Package name detection**: Include package name (`ui`, `auth`, `common`) in commit message to trigger release
+- **Multiple packages**: Include multiple package names to release multiple packages
+- **Manual release**: Use GitHub Actions workflow dispatch for manual releases
+
+## Common Examples
+
+### UI Package
+```bash
+feat(ui): add new Button component with variants
+fix(ui): resolve modal backdrop click issue
+docs(ui): update component usage examples
+style(ui): improve button hover animations
+```
+
+### Common Package
+```bash
+feat(common): add createContext utility hook
+fix(common): resolve type inference in fetch utility
+refactor(common): optimize utility function performance
+```
+
+### Auth Package
+```bash
+feat(auth): add login with email/password
+fix(auth): resolve session token expiration
+perf(auth): optimize user context updates
+```
+
+### Root/General
+```bash
+chore: update dependencies to latest versions
+docs: update project README with setup instructions
+ci: fix GitHub Actions workflow configuration
+```
+
+### Multiple Packages
+```bash
+feat(ui, auth): add shared authentication components
+fix(common): resolve utility and update ui package
+docs(ui, common): update documentation for both packages
+```
+
+### Breaking Changes
+```bash
+feat(ui)!: change Button component API
+fix(auth)!: update authentication flow
+```
+
+## Version Impact
+- `feat` → Minor version bump
+- `fix`, `perf`, `refactor`, `style`, `docs`, `chore` → Patch version bump
+- `feat!`, `fix!` → Major version bump (breaking changes)

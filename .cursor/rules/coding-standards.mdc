@@ -1,0 +1,49 @@
+---
+globs: *.ts,*.tsx,*.js,*.jsx
+---
+
+# Coding Standards
+
+## Code Style (Biome Configuration)
+- **Indentation**: 2 spaces
+- **Line Width**: 100 characters
+- **Quotes**: Single quotes for strings, double quotes for JSX attributes
+- **Semicolons**: As needed (not required)
+- **Trailing Commas**: None
+- **JSX**: Self-closing elements required
+
+## TypeScript Standards
+- Use explicit return types for functions
+- Prefer `React.FC<Props>` for component definitions
+- Use `type` over `interface` for type definitions
+- Import types with `import type` syntax
+- Use path aliases: `@/` for package-relative imports
+
+## Component Structure
+Each UI component should follow this structure:
+```
+components/
+  component-name/
+    component-name.tsx      # Main component
+    component-name.style.tsx # Styling logic
+    types.tsx               # Type definitions
+    index.tsx               # Exports
+```
+
+## Import Order
+1. React imports
+2. Third-party libraries
+3. Internal imports (using @/ aliases)
+4. Type imports (with `import type`)
+
+## Naming Conventions
+- **Components**: PascalCase (e.g., `Button`, `UserProfile`)
+- **Files**: kebab-case (e.g., `user-profile.tsx`)
+- **Types**: PascalCase with descriptive suffixes (e.g., `ButtonProps`, `UserType`)
+- **Functions**: camelCase
+- **Constants**: UPPER_SNAKE_CASE
+
+## Error Handling
+- Use proper error boundaries in React components
+- Implement consistent error types in the auth package
+- Always handle async operations with proper error catching

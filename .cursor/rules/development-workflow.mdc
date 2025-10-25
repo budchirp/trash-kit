@@ -1,0 +1,49 @@
+---
+description: Development workflow and best practices
+---
+
+# Development Workflow
+
+## Getting Started
+1. Install dependencies: `pnpm install`
+2. Start development: `pnpm dev` (runs all packages in parallel)
+3. Build packages: `pnpm build` (builds all packages in parallel)
+
+## Package Development
+- Each package has its own `dev` script for development
+- Use `pnpm --filter @trash-kit/ui dev` to run specific package
+- All packages use tsup for building with watch mode
+
+## Code Quality
+- **Linting**: Uses Biome for linting and formatting
+- **Formatting**: Run `pnpm format` in each package
+- **Type Checking**: TypeScript is configured for strict type checking
+
+## Testing Strategy
+- Each package should have its own test suite
+- Use consistent testing patterns across packages
+- Test both unit and integration scenarios
+
+## Git Workflow
+1. Create feature branches from main
+2. Use conventional commits for clear history
+3. Ensure all packages build before committing
+4. Use descriptive commit messages
+5. Include package names in commit messages to trigger specific releases
+6. Use GitHub Actions for manual releases when needed
+
+## Package Dependencies
+- Always use workspace references: `"@trash-kit/common": "workspace:*"`
+- Keep dependencies minimal and focused
+- Update lockfile when adding dependencies
+
+## Build Optimization
+- Each package builds independently
+- Common package is always built in release process
+- Parallel execution for faster development
+- Selective package releases based on commit message content
+
+## Documentation
+- Update README files when adding new features
+- Document breaking changes in CHANGELOG
+- Keep package documentation up to date

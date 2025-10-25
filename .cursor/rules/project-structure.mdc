@@ -1,0 +1,35 @@
+---
+alwaysApply: true
+---
+
+# Trash Kit Monorepo Structure
+
+This is a pnpm workspace monorepo containing three main packages:
+
+## Package Structure
+- **@trash-kit/ui**: React UI components library
+- **@trash-kit/common**: Shared utilities, hooks, and types
+- **@trash-kit/auth**: Authentication library and services
+- **example**: Next.js example application
+
+## Key Files
+- [package.json](mdc:package.json) - Root package configuration with workspace scripts
+- [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml) - Workspace configuration
+- [biome.json](mdc:biome.json) - Linting and formatting configuration
+
+## Package Dependencies
+- UI and Auth packages depend on Common package
+- All packages use workspace references: `"@trash-kit/common": "workspace:*"`
+
+## Development Commands
+- `pnpm dev` - Runs all packages in parallel
+- `pnpm build` - Builds all packages in parallel
+- `pnpm release:ui` - Releases UI package only
+- `pnpm release:common` - Releases Common package only
+- `pnpm release:auth` - Releases Auth package only
+- `pnpm release:all` - Releases all packages
+
+## Release System
+- Uses semantic-release with separate `.releaserc.json` files per package
+- GitHub Actions workflows for automated releases
+- Conventional commits for version management
