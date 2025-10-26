@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   release-common:
-    name: Release @trash-kit/common
+    name: Release common
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
         run: npm run release
 
   release-auth:
-    name: Release @trash-kit/auth
+    name: Release auth
     runs-on: ubuntu-latest
     needs: release-common
     steps:
@@ -54,7 +54,7 @@ jobs:
         run: npm run release
 
   release-ui:
-    name: Release @trash-kit/ui
+    name: Release ui
     runs-on: ubuntu-latest
     needs: release-auth
     steps:
