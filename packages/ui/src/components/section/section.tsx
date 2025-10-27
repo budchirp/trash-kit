@@ -22,23 +22,19 @@ export const Section: React.FC<SectionProps> = ({
     <Column
       {...props}
       padding='none'
-      className={cn('gap-0', !subsection ? 'mt-12' : '', className)}
+      className={cn('gap-0', !subsection && (title || description) ? 'mt-12' : '', className)}
     >
       <Column className='mb-2 gap-2'>
-        {typeof title === 'string' ? (
+        {title && typeof title === 'string' ? (
           <Heading size={subsection ? 'h3' : 'h1'}>{title}</Heading>
         ) : (
           title
         )}
 
-        {description && (
-          <div>
-            {typeof description === 'string' ? (
-              <Heading size='h4'>{description}</Heading>
-            ) : (
-              description
-            )}
-          </div>
+        {description && typeof description === 'string' ? (
+          <Heading size='h4'>{description}</Heading>
+        ) : (
+          description
         )}
       </Column>
 
@@ -46,7 +42,7 @@ export const Section: React.FC<SectionProps> = ({
 
       <Column
         className={cn(!subsection ? 'mt-2' : '', columnClassName)}
-        padding={!divider && !title ? 'lg' : 'none'}
+        padding={!divider && !(title || description) ? 'lg' : 'none'}
       >
         {children}
       </Column>
