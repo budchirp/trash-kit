@@ -31,10 +31,14 @@ export const Section: React.FC<SectionProps> = ({
           title
         )}
 
-        {description && typeof description === 'string' ? (
-          <Heading size='h4'>{description}</Heading>
-        ) : (
-          description
+        {description && (
+          <div>
+            {typeof description === 'string' ? (
+              <Heading size='h4'>{description}</Heading>
+            ) : (
+              description
+            )}
+          </div>
         )}
       </Column>
 

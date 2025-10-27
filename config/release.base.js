@@ -7,14 +7,13 @@ export const release = (scope) => {
         {
           preset: 'conventionalcommits',
           releaseRules: [
-            { scope: scope, type: 'chore', release: 'patch' },
-            { scope: scope, type: 'feat', release: 'minor' },
-            { scope: scope, type: 'fix', release: 'patch' },
-            { scope: scope, type: 'perf', release: 'patch' },
-            { scope: scope, breaking: true, release: 'major' },
-            { scope: scope, release: false },
-            { scope: 'all', release: 'minor' },
-            { type: 'release', release: 'minor' }
+            { scope, type: 'chore', release: 'patch' },
+            { scope, type: 'feat', release: 'minor' },
+            { scope, type: 'fix', release: 'patch' },
+            { scope, type: 'perf', release: 'patch' },
+            { scope, breaking: true, release: 'major' },
+            { scope, release: false },
+            { type: 'release', release: 'patch' }
           ]
         }
       ],
