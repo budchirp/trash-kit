@@ -1,6 +1,6 @@
 export const release = (scope) => {
   return {
-    tagFormat: `@trash-kit/${scope}-\${version}`,
+    tagFormat: `@trash-kit/${scope}-v\${version}`,
     plugins: [
       [
         '@semantic-release/commit-analyzer',
