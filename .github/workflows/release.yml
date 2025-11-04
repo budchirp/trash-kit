@@ -14,9 +14,29 @@ permissions:
   id-token: write
 
 jobs:
+  release-core:
+    name: Release core
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Release
+        working-directory: packages/core
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm run release
+
   release-common:
     name: Release common
     runs-on: ubuntu-latest
+    needs: release-core
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v5

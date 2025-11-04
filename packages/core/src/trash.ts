@@ -1,7 +1,7 @@
 import type { TrashContext } from '@/types/trash'
 
 export class Trash {
-  context: TrashContext = {} as TrashContext
+  context: TrashContext
 
   constructor(
     context: TrashContext = {
