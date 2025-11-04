@@ -1,6 +1,7 @@
 export type APIHeaders = {
   token: string
   locale?: string
+  [key: string]: string | undefined
 }
 
 export type PublicAPIHeaders = Omit<APIHeaders, 'token'>
