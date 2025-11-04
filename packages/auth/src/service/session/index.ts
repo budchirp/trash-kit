@@ -1,4 +1,6 @@
-import { Fetch } from '@trash-kit/common'
+import { Fetch } from '@trash-kit/core'
+
+import type { NewSessionValues } from '@/service/session/schemas'
 
 import type {
   APIHeaders,
@@ -6,17 +8,16 @@ import type {
   ServiceResponse,
   PublicAPIHeaders,
   Trash
-} from '@trash-kit/common'
-import type { SignInFormValues } from '@/service/session/schemas'
+} from '@trash-kit/core'
 
 export class SessionService {
   public static async create(
     trash: Trash,
-    headers: PublicAPIHeaders,
-    values: SignInFormValues
+    values: NewSessionValues,
+    headers: PublicAPIHeaders
   ): Promise<ServiceResponse<string>> {
     try {
-      const { json } = await Fetch.post<APIResponse<{ token: string }>>(
+      const { json, response } = await Fetch.post<APIResponse<{ token: string }>>(
         `${trash.context.apiUrl}/session`,
         values,
         headers
@@ -33,6 +34,7 @@ export class SessionService {
       return {
         error: true,
         message: json.message,
+        status: response.status,
         data: null
       }
     } catch (error) {
@@ -40,7 +42,8 @@ export class SessionService {
 
       return {
         error: true,
-        message: null,
+        message: 'Internal server error',
+        status: 500,
         data: null
       }
     }
@@ -48,7 +51,7 @@ export class SessionService {
 
   public static async verify(trash: Trash, headers: APIHeaders): Promise<ServiceResponse> {
     try {
-      const { json } = await Fetch.get<APIResponse>(
+      const { json, response } = await Fetch.get<APIResponse>(
         `${trash.context.apiUrl}/session/verify`,
         headers
       )
@@ -64,6 +67,7 @@ export class SessionService {
       return {
         error: true,
         message: json.message,
+        status: response.status,
         data: null
       }
     } catch (error) {
@@ -71,7 +75,8 @@ export class SessionService {
 
       return {
         error: true,
-        message: null,
+        message: 'Internal server error',
+        status: 500,
         data: null
       }
     }
@@ -79,11 +84,11 @@ export class SessionService {
 
   public static async delete(
     trash: Trash,
-    headers: APIHeaders,
-    session: string | null | undefined = null
+    session: string | null,
+    headers: APIHeaders
   ): Promise<ServiceResponse> {
     try {
-      const { json } = session
+      const { json, response } = session
         ? await Fetch.delete<APIResponse>(`${trash.context.apiUrl}/session/${session}`, headers)
         : await Fetch.delete<APIResponse>(`${trash.context.apiUrl}/session`, headers)
 
@@ -98,6 +103,7 @@ export class SessionService {
       return {
         error: true,
         message: json.message,
+        status: response.status,
         data: null
       }
     } catch (error) {
@@ -105,7 +111,8 @@ export class SessionService {
 
       return {
         error: true,
-        message: null,
+        message: 'Internal server error',
+        status: 500,
         data: null
       }
     }

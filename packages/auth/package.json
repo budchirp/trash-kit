@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@trash-kit/common": "*",
+    "@trash-kit/core": "*",
     "zod": "^4.1.5"
   },
   "peerDependencies": {

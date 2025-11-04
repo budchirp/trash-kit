@@ -1,8 +1,8 @@
 import z from 'zod'
 
-export const signInSchema = z.object({
-  username: z.string().min(3),
-  password: z.string().min(6)
+export const newSessionSchema = z.object({
+  username: z.string().min(1),
+  password: z.string().min(1)
 })
 
-export type SignInFormValues = z.infer<typeof signInSchema>
+export type NewSessionValues = z.infer<typeof newSessionSchema>

@@ -1,4 +1,7 @@
-import { Fetch } from '@trash-kit/common'
+import { Fetch } from '@trash-kit/core'
+
+import type { NewUserValues } from '@/service/user/schemas'
+import type { User } from '@/types/user'
 
 import type {
   APIHeaders,
@@ -6,18 +9,16 @@ import type {
   ServiceResponse,
   PublicAPIHeaders,
   Trash
-} from '@trash-kit/common'
-import type { SignUpFormValues } from '@/service/user/schemas'
-import type { User } from '@/types/user'
+} from '@trash-kit/core'
 
 export class UserService {
   public static async create(
     trash: Trash,
-    headers: PublicAPIHeaders,
-    values: SignUpFormValues
+    values: NewUserValues,
+    headers: PublicAPIHeaders
   ): Promise<ServiceResponse> {
     try {
-      const { json } = await Fetch.post<APIResponse>(
+      const { json, response } = await Fetch.post<APIResponse>(
         `${trash.context.apiUrl}/user`,
         values,
         headers
@@ -34,6 +35,7 @@ export class UserService {
       return {
         error: true,
         message: json.message,
+        status: response.status,
         data: null
       }
     } catch (error) {
@@ -41,18 +43,19 @@ export class UserService {
 
       return {
         error: true,
-        message: null,
+        message: 'Internal server error',
+        status: 500,
         data: null
       }
     }
   }
 
-  public static async get(
-    trash: Trash,
-    headers: Omit<APIHeaders, 'token'> & { token?: string | null }
-  ): Promise<ServiceResponse<User>> {
+  public static async get(trash: Trash, headers: APIHeaders): Promise<ServiceResponse<User>> {
     try {
-      const { json } = await Fetch.get<APIResponse<User>>(`${trash.context.apiUrl}/user`, headers)
+      const { json, response } = await Fetch.get<APIResponse<User>>(
+        `${trash.context.apiUrl}/user`,
+        headers
+      )
 
       if (!json.error) {
         return {
@@ -65,6 +68,7 @@ export class UserService {
       return {
         error: true,
         message: json.message,
+        status: response.status,
         data: null
       }
     } catch (error) {
@@ -72,7 +76,8 @@ export class UserService {
 
       return {
         error: true,
-        message: null,
+        message: 'Internal server error',
+        status: 500,
         data: null
       }
     }

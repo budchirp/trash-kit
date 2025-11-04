@@ -15,6 +15,7 @@ export type ServiceResponse<T = undefined | null> =
   | {
       error: false
       message: string
+      status: never
       data: T
     }
   | {

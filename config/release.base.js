@@ -9,6 +9,7 @@ export const release = (scope) => {
           releaseRules: [
             { scope, type: 'chore', release: 'patch' },
             { scope, type: 'feat', release: 'minor' },
+            { scope, type: 'refactor', release: 'minor' },
             { scope, type: 'fix', release: 'patch' },
             { scope, type: 'perf', release: 'patch' },
             { scope, breaking: true, release: 'major' },

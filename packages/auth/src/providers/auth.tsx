@@ -1,26 +1,35 @@
 import { UserProvider } from '@/context/user'
 import { UserService } from '@/service/user'
 
-import type { PublicAPIHeaders, Trash } from '@trash-kit/common'
+import type { Trash } from '@trash-kit/core'
 
 type AuthProviderProps = {
   children: React.ReactNode
-  headers: PublicAPIHeaders & { token: string | null | undefined }
+  token?: string
   trash: Trash
+  ErrorComponent: ({ error }: { error: { message: string; status: number } }) => React.ReactNode
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = async ({
   children,
-  headers,
-  trash
+  token,
+  trash,
+  ErrorComponent
 }: AuthProviderProps): Promise<React.ReactNode> => {
-  if (headers.token) {
-    const response = await UserService.get(trash, headers)
-    if (response.error) {
-      return children
+  if (token) {
+    const { error, message, status, data } = await UserService.get(trash, { token })
+    if (error) {
+      return (
+        <ErrorComponent
+          error={{
+            message,
+            status
+          }}
+        />
+      )
     }
 
-    return <UserProvider initialUser={response.data}>{children}</UserProvider>
+    return <UserProvider initialUser={data}>{children}</UserProvider>
   }
 
   return children
