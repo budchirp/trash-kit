@@ -1,17 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 
-import { createContext } from '@trash-kit/common'
+import { SessionService } from '@/service/session'
 
 import type { User } from '@/types/user'
+import type { Trash } from '@trash-kit/core'
 
-const [InternalUserProvider, useUser, UserContext] = createContext<{
-  user: User
-  setUser: (user: User) => void
+export const UserContext = createContext<{
+  user: User | null
+  setUser: (user: User | null) => void
+  logout: (trash: Trash, token: string, session?: string) => Promise<void>
 }>({
-  name: 'UserContext',
-  defaultValue: null
+  user: null,
+  setUser: () => {},
+  logout: async () => {}
 })
 
 type UserProviderProps = {
@@ -19,13 +22,27 @@ type UserProviderProps = {
   initialUser: User
 }
 
-const UserProvider: React.FC<UserProviderProps> = ({
+export const UserProvider: React.FC<UserProviderProps> = ({
   children,
   initialUser
 }: UserProviderProps): React.ReactNode => {
-  const [user, setUser] = useState<User>(initialUser)
+  const [user, setUser] = useState<User | null>(initialUser)
 
-  return <InternalUserProvider value={{ user, setUser }}>{children}</InternalUserProvider>
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        logout: async (trash: Trash, token: string, session?: string) => {
+          await SessionService.delete(trash, session ?? null, {
+            token
+          })
+
+          setUser(null)
+        }
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  )
 }
-
-export { UserProvider, useUser, UserContext }
