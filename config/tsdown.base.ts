@@ -4,12 +4,15 @@ export default defineConfig({
   dts: {
     sourcemap: true
   },
-  entry: 'src/**/*.ts',
+  entry: 'src/**',
   format: ['esm', 'cjs'],
   external: ['react', 'react-dom'],
-  treeshake: false,
-  minify: false,
-  target: 'esnext',
+  platform: 'neutral',
+  minify: true,
+  treeshake: true,
   sourcemap: true,
-  clean: true
+  clean: true,
+  outputOptions: {
+    preserveModules: true
+  }
 })
