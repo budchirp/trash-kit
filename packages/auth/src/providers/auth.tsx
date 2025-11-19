@@ -1,5 +1,3 @@
-'use client'
-
 import { UserProvider } from '@/context/user'
 import { UserService } from '@/service/user'
 
