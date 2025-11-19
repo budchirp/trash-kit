@@ -40,7 +40,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@trash-kit/common": "*",
+    "@trash-kit/common": "2.4.1",
     "class-variance-authority": "^0.7.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1"
