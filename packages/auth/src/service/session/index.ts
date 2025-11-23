@@ -23,7 +23,7 @@ export class SessionService {
         headers
       )
 
-      if (!json.error) {
+      if (response.ok && !json.error) {
         return {
           error: false,
           message: json.message,
@@ -56,7 +56,7 @@ export class SessionService {
         headers
       )
 
-      if (!json.error) {
+      if (response.ok && !json.error) {
         return {
           error: false,
           message: json.message,
@@ -92,7 +92,7 @@ export class SessionService {
         ? await Fetch.delete<APIResponse>(`${trash.context.apiUrl}/session/${session}`, headers)
         : await Fetch.delete<APIResponse>(`${trash.context.apiUrl}/session`, headers)
 
-      if (!json.error) {
+      if (response.ok && !json.error) {
         return {
           error: false,
           message: json.message,

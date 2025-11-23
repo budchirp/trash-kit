@@ -24,7 +24,7 @@ export class UserService {
         headers
       )
 
-      if (!json.error) {
+      if (response.ok && !json.error) {
         return {
           error: false,
           message: json.message,
@@ -57,7 +57,7 @@ export class UserService {
         headers
       )
 
-      if (!json.error) {
+      if (response.ok && !json.error) {
         return {
           error: false,
           message: json.message,
