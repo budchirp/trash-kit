@@ -1,3 +1,5 @@
+## [2.5.7](https://github.com/budchirp/trash-kit/compare/@trash-kit/auth-v2.5.6...@trash-kit/auth-v2.5.7) (2025-11-23)
+
 ## [2.5.6](https://github.com/budchirp/trash-kit/compare/@trash-kit/auth-v2.5.5...@trash-kit/auth-v2.5.6) (2025-11-19)
 
 ## [2.5.5](https://github.com/budchirp/trash-kit/compare/@trash-kit/auth-v2.5.4...@trash-kit/auth-v2.5.5) (2025-11-19)
