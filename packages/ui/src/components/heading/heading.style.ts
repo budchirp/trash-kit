@@ -5,8 +5,10 @@ export const headingStyle = cva('break-all', {
     size: {
       h1: 'text-4xl font-bold',
       h2: 'text-2xl font-bold',
-      h3: 'text-lg font-semibold text-secondary',
-      h4: 'text-base font-medium text-tertiary'
+      h3: 'text-lg font-semibold',
+      h4: 'text-md font-medium',
+      h5: 'text-base font-normal text-secondary',
+      h6: 'text-sm font-normal text-tertiary'
     },
     color: {
       accent: 'text-primary-accent',
