@@ -12,13 +12,11 @@ export class Fetch {
   }> => {
     const _headers = {
       ...(body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...headers,
-      Authorization: `Bearer ${headers?.token}`
+      ...(headers?.token ? { Authorization: `Bearer ${headers.token}` } : {}),
+      ...headers
     }
 
     const _body = body instanceof FormData ? body : JSON.stringify(body)
-
-    console.log(`REQUEST: ${url}`, method, _body, _headers)
 
     const response = await fetch(url, {
       method,
@@ -28,6 +26,7 @@ export class Fetch {
 
     const json = await response.json()
 
+    console.log(`REQUEST: ${url}`, method, _body, _headers)
     console.log(`RESPONSE: ${url}`, json)
 
     return {
