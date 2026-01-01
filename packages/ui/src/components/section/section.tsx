@@ -25,7 +25,7 @@ export const Section: React.FC<SectionProps> = ({
       className={cn('gap-0', !subsection && (title || description) ? 'mt-12' : '', className)}
     >
       {(title || description) && (
-        <Column className='mb-2 gap-2'>
+        <Column className={cn('gap-2', (divider || children) && 'mb-2')}>
           {title && (
             <div>
               {title && typeof title === 'string' ? (
@@ -50,7 +50,7 @@ export const Section: React.FC<SectionProps> = ({
         </Column>
       )}
 
-      {divider && title && <Divider thickness='thick' className='mb-2' />}
+      {divider && <Divider thickness='thick' className='mb-2' />}
 
       <Column
         className={cn(!subsection && (title || description) ? 'mt-2' : '', columnClassName)}
