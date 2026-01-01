@@ -24,28 +24,31 @@ export const Section: React.FC<SectionProps> = ({
       padding='none'
       className={cn('gap-0', !subsection && (title || description) ? 'mt-12' : '', className)}
     >
-      {title ||
-        (description && (
-          <Column className='mb-2 gap-2'>
-            {title && typeof title === 'string' ? (
-              <Heading size={subsection ? 'h3' : 'h1'}>{title}</Heading>
-            ) : (
-              title
-            )}
+      {(title || description) && (
+        <Column className='mb-2 gap-2'>
+          {title && (
+            <div>
+              {title && typeof title === 'string' ? (
+                <Heading size={subsection ? 'h3' : 'h1'}>{title}</Heading>
+              ) : (
+                title
+              )}
+            </div>
+          )}
 
-            {description && (
-              <div>
-                {typeof description === 'string' ? (
-                  <Heading className='text-tertiary' size='h4'>
-                    {description}
-                  </Heading>
-                ) : (
-                  description
-                )}
-              </div>
-            )}
-          </Column>
-        ))}
+          {description && (
+            <div>
+              {typeof description === 'string' ? (
+                <Heading className='text-tertiary' size='h4'>
+                  {description}
+                </Heading>
+              ) : (
+                description
+              )}
+            </div>
+          )}
+        </Column>
+      )}
 
       {divider && title && <Divider thickness='thick' className='mb-2' />}
 
