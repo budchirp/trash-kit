@@ -10,7 +10,7 @@ export const buttonStyle = cva(
       },
       color: {
         accent:
-          'bg-surface-primary-accent text-gray-900 border-outline-accent hover:bg-surface-secondary-accent hover:border-outline-accent-hover',
+          'bg-surface-primary-accent text-white border-outline-accent hover:bg-surface-secondary-accent hover:border-outline-accent-hover',
         surface:
           'bg-surface-primary text-primary border-outline hover:bg-surface-secondary hover:border-outline-hover'
       }
