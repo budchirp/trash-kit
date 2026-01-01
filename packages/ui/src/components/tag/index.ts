@@ -1,3 +1,2 @@
-export * from '@/components/box/box'
-export * from '@/components/box/box-content'
-export * from '@/components/box/types'
+export * from '@/components/tag/tag'
+export * from '@/components/tag/types'
