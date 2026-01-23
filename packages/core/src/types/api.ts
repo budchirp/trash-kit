@@ -1,4 +1,4 @@
-export type APIResponse<T = any> = {
+export type ApiResponse<T> = {
   error: boolean
   message: string
   data: T
