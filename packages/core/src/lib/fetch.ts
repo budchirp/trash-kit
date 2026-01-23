@@ -12,7 +12,7 @@ export class Fetch {
   }> => {
     const _headers = {
       ...(body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...(headers?.token ? { Authorization: `Bearer ${headers.token}` } : {}),
+      ...(headers?.jwt ? { Authorization: `Bearer ${headers.jwt}` } : {}),
       ...(headers?.locale ? { 'Accept-Language': headers.locale } : {}),
       ...headers
     }
