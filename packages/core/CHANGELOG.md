@@ -1,3 +1,5 @@
+## [1.0.9](https://github.com/budchirp/trash-kit/compare/@trash-kit/core-v1.0.8...@trash-kit/core-v1.0.9) (2026-01-23)
+
 ## [1.0.8](https://github.com/budchirp/trash-kit/compare/@trash-kit/core-v1.0.7...@trash-kit/core-v1.0.8) (2026-01-23)
 
 ## [1.0.7](https://github.com/budchirp/trash-kit/compare/@trash-kit/core-v1.0.6...@trash-kit/core-v1.0.7) (2026-01-23)
