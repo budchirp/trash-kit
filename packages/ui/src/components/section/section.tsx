@@ -52,7 +52,7 @@ export const Section: React.FC<SectionProps> = ({
       {divider && <Divider thickness='thick' />}
 
       <Column
-        className={columnClassName}
+        className={cn(!subsection && (title || description) ? 'mt-2' : '', columnClassName)}
         padding={!divider && !(title || description) ? 'lg' : 'none'}
       >
         {children}
