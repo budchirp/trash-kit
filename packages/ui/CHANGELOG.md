@@ -1,3 +1,5 @@
+## [2.4.13](https://github.com/budchirp/trash-kit/compare/@trash-kit/ui-v2.4.12...@trash-kit/ui-v2.4.13) (2026-01-23)
+
 ## [2.4.12](https://github.com/budchirp/trash-kit/compare/@trash-kit/ui-v2.4.11...@trash-kit/ui-v2.4.12) (2026-01-23)
 
 ## [2.4.11](https://github.com/budchirp/trash-kit/compare/@trash-kit/ui-v2.4.10...@trash-kit/ui-v2.4.11) (2026-01-23)
