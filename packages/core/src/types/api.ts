@@ -8,7 +8,6 @@ export type ServiceResponse<T = null> =
   | {
       error: false
       message: string
-      status: 200
       data: T
     }
   | {
