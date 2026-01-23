@@ -6,7 +6,7 @@ import type { RowProps } from '@/components/row/types'
 
 export const Row: React.FC<RowProps> = ({ children, className, ...props }: RowProps): Children => {
   return (
-    <div {...props} className={cn('flex w-full items-center', className)}>
+    <div {...props} className={cn('flex items-center', className)}>
       {children}
     </div>
   )
