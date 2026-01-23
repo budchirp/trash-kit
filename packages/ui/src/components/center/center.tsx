@@ -10,7 +10,10 @@ export const Center: React.FC<CenterProps> = ({
   ...props
 }: CenterProps): Children => {
   return (
-    <div {...props} className={cn('flex justify-center items-center', className)}>
+    <div
+      {...props}
+      className={cn('flex flex-col justify-center items-center text-center', className)}
+    >
       {children}
     </div>
   )
