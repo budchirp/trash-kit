@@ -1,41 +1,43 @@
 'use client'
 
 import type React from 'react'
+import { use } from 'react'
 
+import { FieldContext } from '@/components/field/context'
+import { Center } from '@/components/center'
+import { Row } from '@/components/row'
 import { cn } from '@/lib/cn'
 
 import type { InputProps } from '@/components/input/types'
 
 export const Input: React.FC<InputProps> = ({
   className,
+  name,
+  id,
   icons: { leading, trailing } = {},
   ...props
 }: InputProps): Children => {
+  const field = use(FieldContext)
+
   return (
-    <div className='relative flex min-h-10 max-h-48 w-full items-center rounded-3xl'>
-      {leading && (
-        <div className='absolute inset-y-0 left-0 pl-2 flex size-10 items-center justify-center'>
-          {leading}
-        </div>
+    <Row
+      className={cn(
+        'min-h-10 max-h-48 w-full rounded-3xl overflow-hidden',
+        'bg-surface-primary text-primary border border-outline focus:border-outline-hover hover:border-outline-hover py-2 px-3 gap-3 transition duration-300',
+        className
       )}
+    >
+      {leading && <Center className='max-h-8 aspect-square'>{leading}</Center>}
 
       <input
         {...props}
-        className={cn(
-          'bg-surface-primary text-primary h-auto placeholder-tertiary border-outline focus:border-outline-hover hover:border-outline-hover flex w-full items-center rounded-3xl border py-2 transition duration-300 resize-none overflow-auto',
-          trailing && 'pr-12 pl-4',
-          leading && 'pl-12 pr-4',
-          !leading && !trailing && 'px-4',
-          className
-        )}
+        name={name || field?.name}
+        id={id || field?.name}
+        className='size-full placeholder-tertiary'
       />
 
-      {trailing && (
-        <div className='absolute inset-y-0 right-0 pr-2 flex size-10 items-center justify-center overflow-hidden'>
-          {trailing}
-        </div>
-      )}
-    </div>
+      {trailing && <Center className='max-h-8'>{trailing}</Center>}
+    </Row>
   )
 }
 Input.displayName = 'Input'

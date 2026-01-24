@@ -1,10 +1,10 @@
 import type React from 'react'
 
 import { buttonStyle } from '@/components/button/button.style'
+import { LoaderCircle } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 import type { ButtonProps } from '@/components/button/types'
-import { LoaderCircle } from 'lucide-react'
 
 export const Button: React.FC<ButtonProps> = ({
   children,

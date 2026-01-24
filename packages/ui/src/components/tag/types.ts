@@ -2,9 +2,9 @@ import type { ComponentProps } from 'react'
 
 import type { VariantProps } from 'class-variance-authority'
 
-import type { tagStyle } from '@/components/tag/tag.style'
+import type { boxStyle } from '@/components/box/box.style'
 
 export type TagProps = ComponentProps<'div'> &
-  VariantProps<typeof tagStyle> & {
+  VariantProps<typeof boxStyle> & {
     children?: Children
   }

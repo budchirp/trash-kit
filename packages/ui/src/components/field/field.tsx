@@ -1,44 +1,34 @@
 import type React from 'react'
 
+import { FieldContext } from '@/components/field/context'
+import { Column } from '@/components/column'
 import { cn } from '@/lib/cn'
 
 import type { FieldProps } from '@/components/field/types'
-import { Label } from '@/components/label'
-import { Column } from '../column'
 
 export const Field: React.FC<FieldProps> = ({
   children,
   className,
-  type = 'column',
-  label,
+  type,
   error,
-  id,
+  name,
   ...props
 }: FieldProps): Children => {
   return (
-    <Column className='gap-0'>
-      <Column
-        {...props}
-        className={cn('gap-1', type === 'column' ? 'flex-col' : 'flex-row items-center', className)}
-      >
-        {type === 'column' && (
-          <>
-            {typeof label === 'string' ? <Label id={id}>{label}</Label> : label}
+    <FieldContext.Provider value={{ name }}>
+      <Column className='gap-1'>
+        <Column
+          {...props}
+          className={cn(
+            type === 'row' ? 'flex-row items-center gap-3' : 'flex-col gap-1',
+            className
+          )}
+        >
+          {children}
+        </Column>
 
-            {children}
-          </>
-        )}
-
-        {type === 'row' && (
-          <>
-            {children}
-
-            {typeof label === 'string' ? <Label id={id}>{label}</Label> : label}
-          </>
-        )}
+        {error && <div className='text-red-500'>{error}</div>}
       </Column>
-
-      {error && <div className='text-red-500'>{error}</div>}
-    </Column>
+    </FieldContext.Provider>
   )
 }

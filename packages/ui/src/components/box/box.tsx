@@ -9,11 +9,11 @@ export const Box: React.FC<BoxProps> = ({
   children,
   className,
   color,
-  blur,
+  clickable,
   ...props
 }: BoxProps): Children => {
   return (
-    <div {...props} className={cn(boxStyle({ className, color, blur }))}>
+    <div {...props} className={cn(boxStyle({ color, clickable, className }))}>
       {children}
     </div>
   )

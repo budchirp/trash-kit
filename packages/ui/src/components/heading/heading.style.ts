@@ -11,7 +11,7 @@ export const headingStyle = cva('break-all', {
       h6: 'text-sm font-normal text-tertiary'
     },
     color: {
-      accent: 'text-primary-accent',
+      accent: 'text-accent',
       surface: 'text-primary'
     }
   },

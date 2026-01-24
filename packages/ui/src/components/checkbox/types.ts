@@ -1,5 +1,6 @@
-import type { CheckboxProps as HeadlessCheckboxProps } from '@headlessui/react'
+import type { ComponentProps } from 'react'
 
-export type CheckboxProps = HeadlessCheckboxProps & {
+export type CheckboxProps = ComponentProps<'input'> & {
+  children?: Children
   className?: string
 }

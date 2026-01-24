@@ -5,7 +5,7 @@ export default defineConfig({
     sourcemap: true
   },
   entry: 'src/**',
-  format: ['esm', 'cjs'],
+  format: ['esm'],
   external: ['react', 'react-dom'],
   platform: 'neutral',
   minify: true,

@@ -2,9 +2,9 @@ import type React from 'react'
 
 import { cn } from '@/lib/cn'
 
-import { Column } from '@/components/column'
 import { Heading } from '@/components/heading'
 import { Divider } from '@/components/divider'
+import { Column } from '@/components/column'
 
 import type { SectionProps } from '@/components/section/types'
 

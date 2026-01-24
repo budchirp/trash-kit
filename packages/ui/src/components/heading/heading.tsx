@@ -13,7 +13,7 @@ export const Heading: React.FC<HeadingProps> = ({
   ...props
 }: HeadingProps): Children => {
   return (
-    <h1 {...props} className={cn(headingStyle({ className, size, color }))}>
+    <h1 {...props} className={cn(headingStyle({ size, color, className }))}>
       {children}
     </h1>
   )

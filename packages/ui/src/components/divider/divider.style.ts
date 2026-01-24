@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-export const dividerStyle = cva('bg-outline rounded-full', {
+export const dividerStyle = cva('block bg-outline rounded-full', {
   variants: {
     thickness: {
       thin: '',

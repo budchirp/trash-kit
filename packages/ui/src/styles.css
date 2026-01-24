@@ -1,0 +1,70 @@
+@theme {
+  --color-surface-primary: var(--surface-primary);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-tertiary: var(--surface-tertiary);
+
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+
+  --color-surface-accent: var(--surface-accent);
+  --color-surface-accent-hover: var(--surface-accent-hover);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  --color-outline: var(--outline);
+  --color-outline-hover: var(--outline-hover);
+
+  --color-outline-accent: var(--outline-accent);
+  --color-outline-accent-hover: var(--outline-accent-hover);
+}
+
+:root {
+  --surface-primary: var(--color-white);
+  --surface-secondary: var(--color-gray-100);
+  --surface-tertiary: var(--color-gray-200);
+
+  --primary: var(--color-gray-900);
+  --secondary: var(--color-gray-800);
+  --tertiary: var(--color-gray-600);
+
+  --surface-accent: var(--color-accent-700);
+  --surface-accent-hover: var(--color-accent-800);
+
+  --accent: var(--color-white);
+  --accent-hover: var(--color-gray-100);
+
+  --outline: oklch(from var(--color-gray-200) l c h / 0.75);
+  --outline-hover: var(--color-gray-300);
+
+  --outline-accent: var(--color-accent-400);
+  --outline-accent-hover: var(--color-accent-500);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-primary: var(--color-gray-900);
+    --surface-secondary: var(--color-gray-800);
+    --surface-tertiary: var(--color-gray-700);
+
+    --primary: var(--color-gray-50);
+    --secondary: var(--color-gray-100);
+    --tertiary: var(--color-gray-300);
+
+    --surface-accent: var(--color-accent-700);
+    --surface-accent-hover: var(--color-accent-600);
+
+    --outline: oklch(from var(--color-gray-690) l c h / 0.75);
+    --outline-hover: oklch(from var(--color-gray-680) l c h / 0.75);
+
+    --outline-accent: oklch(from var(--color-accent-500) l c h / 0.75);
+    --outline-accent-hover: oklch(from var(--color-accent-400) l c h / 0.75);
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+
+  @apply appearance-none scroll-smooth antialiased outline-hidden;
+}

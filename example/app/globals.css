@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "@trash-kit/ui/styles.css";
+
+@source "../node_modules/@trash-kit/ui";
+
+@theme {
+  --font-main: var(--font-main);
+
+  --color-accent-50: oklch(0.97 0.014 254.604);
+  --color-accent-100: oklch(0.932 0.032 255.585);
+  --color-accent-200: oklch(0.882 0.059 254.128);
+  --color-accent-300: oklch(0.809 0.105 251.813);
+  --color-accent-400: oklch(0.707 0.165 254.624);
+  --color-accent-500: oklch(0.623 0.214 259.815);
+  --color-accent-600: oklch(0.546 0.245 262.881);
+  --color-accent-700: oklch(0.488 0.243 264.376);
+  --color-accent-800: oklch(0.424 0.199 265.638);
+  --color-accent-900: oklch(0.379 0.146 265.522);
+  --color-accent-950: oklch(0.282 0.091 267.935);
+
+  --color-gray-50: oklch(0.985 0.002 247.839);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.01 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray-500: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.03 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-680: oklch(22.63% 0.0215 297.16);
+  --color-gray-690: oklch(20.68% 0.0179 294.98);
+  --color-gray-700: oklch(18.22% 0.0143 291.46);
+  --color-gray-800: oklch(17.25% 0.0124 292.69);
+  --color-gray-900: oklch(14.8% 0.0087 296.76);
+}
+
+* {
+  @apply font-main selection:bg-accent-300/90 selection:text-black/90;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  @apply bg-surface-primary text-primary;
+}
