@@ -1,7 +1,7 @@
 'use client'
 
 import type React from 'react'
-import { use, useRef } from 'react'
+import { use } from 'react'
 
 import { FieldContext } from '@/components/field/context'
 import { Check } from 'lucide-react'
@@ -14,41 +14,39 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   className,
   name,
   id,
-  checked,
-  onChange,
+  disabled,
   ...props
 }: CheckboxProps): Children => {
   const field = use(FieldContext)
 
-  const ref = useRef<HTMLInputElement>(null)
-
   return (
-    <>
+    <label
+      className={cn(
+        'inline-flex w-fit items-center gap-3 text-primary',
+        disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+      )}
+    >
       <input
-        ref={ref}
-        className='sr-only'
+        {...props}
+        name={name ?? field?.name}
+        id={id ?? field?.name}
         type='checkbox'
-        name={name || field?.name}
-        id={id || field?.name}
-        checked={checked}
-        onChange={onChange}
+        disabled={disabled}
+        className='peer sr-only'
       />
 
       <span
-        {...props}
         className={cn(
-          'size-6 flex items-center justify-center bg-surface-secondary relative border border-outline rounded-full p-1',
-          checked && 'bg-surface-accent border-outline-accent hover:border-outline-accent-hover',
+          'size-6 flex shrink-0 items-center justify-center bg-surface-secondary relative border border-outline rounded-full p-1',
+          'peer-checked:bg-surface-accent peer-checked:border-outline-accent peer-checked:hover:border-outline-accent-hover',
+          'peer-checked:[&>svg]:visible peer-checked:[&>svg]:opacity-100',
           className
         )}
-        onClick={() => {
-          ref.current?.click()
-        }}
       >
-        <Check
-          className={cn('size-4 text-accent opacity-0 invisible', checked && 'opacity-100 visible')}
-        />
+        <Check className='size-4 text-accent opacity-0 invisible' />
       </span>
-    </>
+
+      {children && <span>{children}</span>}
+    </label>
   )
 }

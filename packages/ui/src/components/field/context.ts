@@ -2,4 +2,8 @@
 
 import { createContext } from 'react'
 
-export const FieldContext = createContext<{ name: string } | null>(null)
+export type FieldContextValue = {
+  name: string
+}
+
+export const FieldContext = createContext<FieldContextValue | null>(null)

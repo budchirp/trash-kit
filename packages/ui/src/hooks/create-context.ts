@@ -21,11 +21,11 @@ export const createContext = <T>({
 
   const useContext = (): T => {
     const context = use(Context)
-    if (!context) {
+    if (context === null || context === undefined) {
       throw new Error(`Can't find context, ${name}`)
     }
 
-    return context as T
+    return context
   }
 
   return [Context.Provider, useContext, Context]

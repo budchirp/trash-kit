@@ -1,3 +1,5 @@
+'use client'
+
 import type React from 'react'
 
 import { FieldContext } from '@/components/field/context'
@@ -27,7 +29,7 @@ export const Field: React.FC<FieldProps> = ({
           {children}
         </Column>
 
-        {error && <div className='text-red-500'>{error}</div>}
+        {error && <div className='text-sm text-red-500'>{error}</div>}
       </Column>
     </FieldContext.Provider>
   )

@@ -1,34 +1,39 @@
-type Headers = Record<string, string | null | undefined>
+type FetchHeaders = Record<string, string | null | undefined>
+type FetchBody = Record<string, unknown> | FormData
+type FetchMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export class Fetch {
   private static fetch = async <T>(
     url: string,
-    method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
-    headers?: Headers,
-    body?: Record<string, unknown> | FormData
+    method: FetchMethod,
+    headers?: FetchHeaders,
+    body?: FetchBody
   ): Promise<{
     json: T
     response: Response
   }> => {
-    const _headers = {
+    const { jwt, locale, ...customHeaders } = headers ?? {}
+    const requestHeaders: Record<string, string> = {
       ...(body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...(headers?.jwt ? { Authorization: `Bearer ${headers.jwt}` } : {}),
-      ...(headers?.locale ? { 'Accept-Language': headers.locale } : {}),
-      ...headers
+      ...(jwt ? { Authorization: `Bearer ${jwt}` } : {}),
+      ...(locale ? { 'Accept-Language': locale } : {})
     }
 
-    const _body = body instanceof FormData ? body : JSON.stringify(body)
+    for (const [key, value] of Object.entries(customHeaders)) {
+      if (value !== null && value !== undefined) {
+        requestHeaders[key] = value
+      }
+    }
+
+    const requestBody = body instanceof FormData ? body : JSON.stringify(body)
 
     const response = await fetch(url, {
       method,
-      headers: _headers,
-      body: _body
+      headers: requestHeaders,
+      body: requestBody
     })
 
-    const json = await response.json()
-
-    console.log(`REQUEST: ${url}`, method, _body, _headers)
-    console.log(`RESPONSE: ${url}`, json)
+    const json = (await response.json()) as T
 
     return {
       json,
@@ -36,27 +41,18 @@ export class Fetch {
     }
   }
 
-  public static get = async <T>(url: string, headers?: Headers) =>
-    await Fetch.fetch<T>(url, 'GET', headers, undefined)
+  public static get = <T>(url: string, headers?: FetchHeaders) =>
+    Fetch.fetch<T>(url, 'GET', headers, undefined)
 
-  public static post = async <T>(
-    url: string,
-    body?: Record<string, unknown> | FormData,
-    headers?: Headers
-  ) => await Fetch.fetch<T>(url, 'POST', headers, body)
+  public static post = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
+    Fetch.fetch<T>(url, 'POST', headers, body)
 
-  public static put = async <T>(
-    url: string,
-    body?: Record<string, unknown> | FormData,
-    headers?: Headers
-  ) => await Fetch.fetch<T>(url, 'PUT', headers, body)
+  public static put = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
+    Fetch.fetch<T>(url, 'PUT', headers, body)
 
-  public static delete = async <T>(url: string, headers?: Headers) =>
-    await Fetch.fetch<T>(url, 'DELETE', headers, undefined)
+  public static delete = <T>(url: string, headers?: FetchHeaders) =>
+    Fetch.fetch<T>(url, 'DELETE', headers, undefined)
 
-  public static patch = async <T>(
-    url: string,
-    body?: Record<string, unknown> | FormData,
-    headers?: Headers
-  ) => await Fetch.fetch<T>(url, 'PATCH', headers, body)
+  public static patch = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
+    Fetch.fetch<T>(url, 'PATCH', headers, body)
 }

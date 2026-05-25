@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -48,6 +48,11 @@
     "lineEnding": "lf",
     "lineWidth": 100,
     "attributePosition": "auto"
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   },
   "javascript": {
     "formatter": {

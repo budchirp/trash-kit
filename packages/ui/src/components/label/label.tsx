@@ -11,6 +11,7 @@ import type { LabelProps } from '@/components/label/types'
 export const Label: React.FC<LabelProps> = ({
   children,
   className,
+  htmlFor,
   ...props
 }: LabelProps): Children => {
   const field = use(FieldContext)
@@ -18,7 +19,7 @@ export const Label: React.FC<LabelProps> = ({
   return (
     <label
       {...props}
-      htmlFor={props.htmlFor || field?.name}
+      htmlFor={htmlFor ?? field?.name}
       className={cn('text-sm font-semibold text-primary cursor-pointer', className)}
     >
       {children}

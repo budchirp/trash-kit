@@ -2,8 +2,6 @@ import type React from 'react'
 
 import { Google_Sans } from 'next/font/google'
 
-import type { Metadata } from 'next'
-
 import './globals.css'
 import { ToastProvider } from '@trash-kit/ui'
 

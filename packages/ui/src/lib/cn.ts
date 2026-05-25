@@ -1,5 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 
-export const cn = (...classnames: any[]): string => {
-  return twMerge(classnames)
+type ClassName = Parameters<typeof twMerge>[number]
+
+export const cn = (...classnames: ClassName[]): string => {
+  return twMerge(...classnames)
 }

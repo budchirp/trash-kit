@@ -10,6 +10,7 @@ import {
   Checkbox,
   Column,
   Container,
+  Divider,
   Field,
   Heading,
   Input,
@@ -29,7 +30,15 @@ const Page: React.FC = (): React.ReactNode => {
       <Container>
         <Section title='Typography'>
           <Column className='gap-4'>
-            <Heading size='h2'>Heading</Heading>
+            <Column className='gap-2'>
+              <Heading size='h1'>Heading h1</Heading>
+              <Heading size='h2'>Heading h2</Heading>
+              <Heading size='h3'>Heading h3</Heading>
+              <Heading size='h4'>Heading h4</Heading>
+              <Heading size='h5'>Heading h5</Heading>
+              <Heading size='h6'>Heading h6</Heading>
+            </Column>
+
             <Text>
               This is a Text component. It is used for body text. Lorem ipsum dolor sit amet,
               consectetur adipiscing elit.
@@ -74,6 +83,12 @@ const Page: React.FC = (): React.ReactNode => {
                 <Text>Accent (clickable)</Text>
               </BoxContent>
             </Box>
+
+            <Box color='primary'>
+              <BoxContent padding='sm'>
+                <Text>Compact content padding</Text>
+              </BoxContent>
+            </Box>
           </Column>
         </Section>
 
@@ -82,6 +97,22 @@ const Page: React.FC = (): React.ReactNode => {
             <Tag color='primary'>Surface primary</Tag>
             <Tag color='secondary'>Surface secondary</Tag>
             <Tag color='accent'>Accent</Tag>
+            <Tag color='primary' clickable>
+              Clickable style
+            </Tag>
+          </Column>
+        </Section>
+
+        <Section title='Divider'>
+          <Column className='gap-4'>
+            <Divider />
+            <Divider thickness='thick' />
+
+            <Row className='h-12 gap-4 items-stretch'>
+              <Text>Left</Text>
+              <Divider orientation='vertical' />
+              <Text>Right</Text>
+            </Row>
           </Column>
         </Section>
 
@@ -109,6 +140,16 @@ const Page: React.FC = (): React.ReactNode => {
               />
             </Field>
 
+            <Field name='disabled'>
+              <Label>Disabled</Label>
+              <Input disabled placeholder='Disabled input' />
+            </Field>
+
+            <Field name='error' error='This field has an error'>
+              <Label>Error State</Label>
+              <Input placeholder='Input with error text' />
+            </Field>
+
             <Field name='terms' type='row'>
               <Checkbox
                 onChange={(e) => setChecked(e.target.checked)}
@@ -116,6 +157,10 @@ const Page: React.FC = (): React.ReactNode => {
                 id='terms'
               />
               <Label>I agree to the terms and conditions</Label>
+            </Field>
+
+            <Field name='newsletter'>
+              <Checkbox>Subscribe to product updates</Checkbox>
             </Field>
           </Column>
         </Section>
@@ -128,6 +173,8 @@ const Page: React.FC = (): React.ReactNode => {
             <Button color='danger'>Surface danger</Button>
             <Button disabled>Disabled</Button>
             <Button loading>Loading</Button>
+            <Button loading />
+            <Button shape='circle'>+</Button>
           </Row>
         </Section>
 
