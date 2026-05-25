@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority'
 
-export const headingStyle = cva('break-all', {
+export const headingStyle = cva('text-pretty', {
   variants: {
     size: {
       h1: 'text-4xl font-bold',
