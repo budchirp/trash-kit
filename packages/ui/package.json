@@ -45,10 +45,10 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@trash-kit/common": "2.4.1",
+    "@trash-kit/common": "2.4.3",
     "class-variance-authority": "^0.7.1",
     "sonner": "^2.0.7",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.6.0"
   },
   "peerDependencies": {
     "react": ">=19",
