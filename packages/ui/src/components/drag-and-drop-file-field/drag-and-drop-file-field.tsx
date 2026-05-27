@@ -24,9 +24,15 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
   ...props
 }: DragAndDropFileFieldProps): Children => {
   const [dragging, setDragging] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
 
   const field = use(FieldContext)
   const input = useRef<HTMLInputElement>(null)
+
+  const setSelectedFiles = (fileList: FileList) => {
+    setFiles(Array.from(fileList))
+    onFiles?.(fileList)
+  }
 
   const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
     event.preventDefault()
@@ -40,7 +46,7 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
       input.current.files = event.dataTransfer.files
     }
 
-    onFiles?.(event.dataTransfer.files)
+    setSelectedFiles(event.dataTransfer.files)
   }
 
   return (
@@ -56,8 +62,8 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
     >
       <Box
         className={cn(
-          'border-dashed',
-          dragging && 'border-outline-accent bg-surface-secondary',
+          'border-dashed hover:border-outline-accent',
+          dragging && 'border-outline-accent',
           className
         )}
       >
@@ -71,7 +77,7 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
             disabled={disabled}
             onChange={(event) => {
               if (event.target.files) {
-                onFiles?.(event.target.files)
+                setSelectedFiles(event.target.files)
               }
 
               onChange?.(event)
@@ -84,10 +90,23 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
 
             <Column>
               <Heading size='h3'>{children}</Heading>
-              {description && (
+              {description && files.length < 1 && (
                 <Heading size='h4' className='text-tertiary'>
                   {description}
                 </Heading>
+              )}
+
+              {files.length > 0 && (
+                <Column className='gap-1 text-tertiary'>
+                  {files.map((file) => (
+                    <span
+                      key={`${file.name}-${file.size}-${file.lastModified}`}
+                      className='truncate text-tertiary'
+                    >
+                      {file.name}
+                    </span>
+                  ))}
+                </Column>
               )}
             </Column>
           </Column>
