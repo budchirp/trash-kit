@@ -7,8 +7,8 @@
     "packages/ui"
   ],
   "scripts": {
-    "dev": "pnpm --parallel --filter @trash-kit/ui --filter @trash-kit/core dev",
-    "build": "pnpm --parallel --filter @trash-kit/ui --filter @trash-kit/core build"
+    "dev": "npm run dev --workspace=@trash-kit/ui && npm run dev --workspace=@trash-kit/core",
+    "build": "npm run build --workspace=@trash-kit/ui && npm run build --workspace=@trash-kit/core"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",
@@ -23,7 +23,10 @@
     "@types/react-dom": "latest",
     "conventional-changelog-conventionalcommits": "^9.3.1",
     "semantic-release": "^25.0.3",
-    "typescript": "latest",
-    "tsdown": "^0.22.0"
+    "tsdown": "^0.22.0",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "@tsdown/css": "^0.22.0"
   }
 }

@@ -12,11 +12,13 @@ import {
   Container,
   Divider,
   Field,
+  FileField,
   Heading,
   Input,
   Label,
   Row,
   Section,
+  Select,
   Tag,
   Text,
   toast
@@ -128,6 +130,23 @@ const Page: React.FC = (): React.ReactNode => {
               <Input type='password' placeholder='Enter your password' />
             </Field>
 
+            <Field name='plan'>
+              <Label>Plan</Label>
+              <Select defaultValue=''>
+                <option value='' disabled>
+                  Select a plan
+                </option>
+                <option value='starter'>Starter</option>
+                <option value='pro'>Pro</option>
+                <option value='team'>Team</option>
+              </Select>
+            </Field>
+
+            <Field name='avatar'>
+              <Label>Avatar</Label>
+              <FileField accept='image/*'>Upload an image</FileField>
+            </Field>
+
             <Field name='search'>
               <Label>With Icons</Label>
 
@@ -160,7 +179,7 @@ const Page: React.FC = (): React.ReactNode => {
             </Field>
 
             <Field name='newsletter'>
-              <Checkbox>Subscribe to product updates</Checkbox>
+              <Checkbox><Label>Subscribe to product updates</Label></Checkbox>
             </Field>
           </Column>
         </Section>

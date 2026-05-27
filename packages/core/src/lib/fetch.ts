@@ -3,28 +3,21 @@ type FetchBody = Record<string, unknown> | FormData
 type FetchMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 export class Fetch {
-  private static fetch = async <T>(
+  private static async request<T>(
     url: string,
     method: FetchMethod,
-    headers?: FetchHeaders,
-    body?: FetchBody
-  ): Promise<{
-    json: T
-    response: Response
-  }> => {
-    const { jwt, locale, ...customHeaders } = headers ?? {}
-    const requestHeaders: Record<string, string> = {
+    body?: FetchBody,
+    headers?: FetchHeaders
+  ) {
+    const baseHeaders: FetchHeaders = {
       ...(body instanceof FormData ? {} : { 'Content-Type': 'application/json' }),
-      ...(jwt ? { Authorization: `Bearer ${jwt}` } : {}),
-      ...(locale ? { 'Accept-Language': locale } : {})
+      ...headers
     }
-
-    for (const [key, value] of Object.entries(customHeaders)) {
-      if (value !== null && value !== undefined) {
-        requestHeaders[key] = value
-      }
-    }
-
+    const requestHeaders = Object.fromEntries(
+      Object.entries(baseHeaders).filter(
+        (entry): entry is [string, string] => entry[1] !== null && entry[1] !== undefined
+      )
+    )
     const requestBody = body instanceof FormData ? body : JSON.stringify(body)
 
     const response = await fetch(url, {
@@ -41,18 +34,23 @@ export class Fetch {
     }
   }
 
-  public static get = <T>(url: string, headers?: FetchHeaders) =>
-    Fetch.fetch<T>(url, 'GET', headers, undefined)
+  public static get<T>(url: string, headers?: FetchHeaders) {
+    return Fetch.request<T>(url, 'GET', undefined, headers)
+  }
 
-  public static post = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
-    Fetch.fetch<T>(url, 'POST', headers, body)
+  public static post<T>(url: string, body?: FetchBody, headers?: FetchHeaders) {
+    return Fetch.request<T>(url, 'POST', body, headers)
+  }
 
-  public static put = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
-    Fetch.fetch<T>(url, 'PUT', headers, body)
+  public static put<T>(url: string, body?: FetchBody, headers?: FetchHeaders) {
+    return Fetch.request<T>(url, 'PUT', body, headers)
+  }
 
-  public static delete = <T>(url: string, headers?: FetchHeaders) =>
-    Fetch.fetch<T>(url, 'DELETE', headers, undefined)
+  public static delete<T>(url: string, headers?: FetchHeaders) {
+    return Fetch.request<T>(url, 'DELETE', undefined, headers)
+  }
 
-  public static patch = <T>(url: string, body?: FetchBody, headers?: FetchHeaders) =>
-    Fetch.fetch<T>(url, 'PATCH', headers, body)
+  public static patch<T>(url: string, body?: FetchBody, headers?: FetchHeaders) {
+    return Fetch.request<T>(url, 'PATCH', body, headers)
+  }
 }

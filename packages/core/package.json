@@ -8,9 +8,6 @@
     "LICENSE",
     "package.json"
   ],
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
   "exports": {
     ".": {
       "import": {

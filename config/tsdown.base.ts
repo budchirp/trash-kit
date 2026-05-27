@@ -1,18 +1,20 @@
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  dts: {
-    sourcemap: true
-  },
-  entry: 'src/**',
+  entry: 'src/index.ts',
   format: ['esm', 'cjs'],
-  external: ['react', 'react-dom'],
   platform: 'neutral',
   minify: true,
   treeshake: true,
   sourcemap: true,
   clean: true,
+  dts: {
+    sourcemap: true
+  },
   outputOptions: {
     preserveModules: true
-  }
+  },
+  deps: {
+    neverBundle: ['react', 'react-dom']
+  },
 })

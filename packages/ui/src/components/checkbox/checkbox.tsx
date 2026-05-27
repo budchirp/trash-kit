@@ -46,7 +46,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         <Check className='size-4 text-accent opacity-0 invisible' />
       </span>
 
-      {children && <span>{children}</span>}
+      {children}
     </label>
   )
 }
