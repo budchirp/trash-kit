@@ -5,7 +5,6 @@ import { use } from 'react'
 
 import { FieldContext } from '@/components/field/context'
 import { Center } from '@/components/center'
-import { Row } from '@/components/row'
 import { cn } from '@/lib/cn'
 
 import type { InputProps } from '@/components/input/types'
@@ -21,10 +20,10 @@ export const Input: React.FC<InputProps> = ({
   const field = use(FieldContext)
 
   return (
-    <Row
+    <label
       className={cn(
-        'min-h-10 max-h-48 w-full rounded-3xl overflow-hidden',
-        'bg-surface-primary text-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2 px-3 gap-3 transition duration-300',
+        'min-h-10 flex items-center max-h-48 w-full rounded-3xl overflow-hidden',
+        'bg-surface-primary text-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2.5 px-4 gap-4 transition duration-300',
         disabled && 'opacity-50',
         className
       )}
@@ -40,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
       />
 
       {trailing && <Center className='max-h-8'>{trailing}</Center>}
-    </Row>
+    </label>
   )
 }
 Input.displayName = 'Input'

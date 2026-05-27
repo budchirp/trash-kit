@@ -11,6 +11,7 @@ import {
   Column,
   Container,
   Divider,
+  DragAndDropFileField,
   Field,
   FileField,
   Heading,
@@ -144,7 +145,12 @@ const Page: React.FC = (): React.ReactNode => {
 
             <Field name='avatar'>
               <Label>Avatar</Label>
-              <FileField accept='image/*'>Upload an image</FileField>
+              <FileField accept='image/*' />
+            </Field>
+
+            <Field name='documents'>
+              <Label>Documents</Label>
+              <DragAndDropFileField multiple>Upload documents</DragAndDropFileField>
             </Field>
 
             <Field name='search'>
@@ -179,7 +185,9 @@ const Page: React.FC = (): React.ReactNode => {
             </Field>
 
             <Field name='newsletter'>
-              <Checkbox><Label>Subscribe to product updates</Label></Checkbox>
+              <Checkbox>
+                <Label>Subscribe to product updates</Label>
+              </Checkbox>
             </Field>
           </Column>
         </Section>

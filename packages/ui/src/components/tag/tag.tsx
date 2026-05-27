@@ -19,7 +19,7 @@ export const Tag: React.FC<TagProps> = ({
         boxStyle({
           color,
           clickable,
-          className: cn('px-3 py-1 w-fit text-sm font-medium rounded-xl', className)
+          className: cn('px-3 py-1 w-fit rounded-xl', className)
         })
       )}
     >

@@ -13,7 +13,8 @@ export const release = (scope) => {
             { scope, type: 'fix', release: 'patch' },
             { scope, type: 'perf', release: 'patch' },
             { scope, breaking: true, release: 'major' },
-            { type: 'release', release: 'patch' }
+            { type: 'release', release: 'patch' },
+            { type: 'chore', release: 'patch' }
           ]
         }
       ],
