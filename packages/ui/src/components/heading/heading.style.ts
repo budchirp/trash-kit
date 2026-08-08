@@ -7,16 +7,11 @@ export const headingStyle = cva('text-pretty', {
       h2: 'text-2xl font-bold',
       h3: 'text-lg font-semibold',
       h4: 'text-md font-medium',
-      h5: 'text-base font-normal text-secondary',
-      h6: 'text-sm font-normal text-tertiary'
+      h5: 'text-base font-normal text-content-secondary',
+      h6: 'text-sm font-normal text-content-tertiary'
     },
-    color: {
-      accent: 'text-accent',
-      surface: 'text-primary'
-    }
   },
   defaultVariants: {
     size: 'h2',
-    color: 'surface'
   }
 })

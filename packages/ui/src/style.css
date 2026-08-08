@@ -3,12 +3,15 @@
   --color-surface-secondary: var(--surface-secondary);
   --color-surface-tertiary: var(--surface-tertiary);
 
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
+  --color-content-primary: var(--content-primary);
+  --color-content-secondary: var(--content-secondary);
+  --color-content-tertiary: var(--content-tertiary);
 
   --color-surface-accent: var(--surface-accent);
   --color-surface-accent-hover: var(--surface-accent-hover);
+
+  --color-surface-content-accent: var(--surface-content-accent);
+  --color-surface-content-accent-hover: var(--surface-content-accent-hover);
 
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
@@ -25,15 +28,18 @@
   --surface-secondary: var(--color-gray-100);
   --surface-tertiary: var(--color-gray-200);
 
-  --primary: var(--color-gray-900);
-  --secondary: var(--color-gray-800);
-  --tertiary: var(--color-gray-600);
+  --content-primary: var(--color-gray-900);
+  --content-secondary: var(--color-gray-800);
+  --content-tertiary: var(--color-gray-600);
 
   --surface-accent: var(--color-accent-700);
   --surface-accent-hover: var(--color-accent-800);
 
-  --accent: var(--color-white);
-  --accent-hover: var(--color-gray-100);
+  --surface-content-accent: var(--color-white);
+  --surface-content-accent-hover: var(--color-gray-100);
+
+  --accent: var(--color-accent-500);
+  --accent-hover: var(--color-accent-600);
 
   --outline: oklch(from var(--color-gray-200) l c h / 0.75);
   --outline-hover: var(--color-gray-300);
@@ -48,15 +54,21 @@
     --surface-secondary: var(--color-gray-800);
     --surface-tertiary: var(--color-gray-700);
 
-    --primary: var(--color-gray-50);
-    --secondary: var(--color-gray-100);
-    --tertiary: var(--color-gray-300);
+    --content-primary: var(--color-gray-50);
+    --content-secondary: var(--color-gray-100);
+    --content-tertiary: var(--color-gray-300);
 
     --surface-accent: var(--color-accent-700);
     --surface-accent-hover: var(--color-accent-600);
 
-    --outline: oklch(from var(--color-gray-690) l c h / 0.75);
-    --outline-hover: oklch(from var(--color-gray-680) l c h / 0.75);
+    --surface-content-accent: var(--color-white);
+    --surface-content-accent-hover: var(--color-gray-100);
+
+    --accent: var(--color-accent-600);
+    --accent-hover: var(--color-accent-600);
+
+    --outline: oklch(from var(--color-gray-700) l c h / 0.75);
+    --outline-hover: oklch(from var(--color-gray-600) l c h / 0.75);
 
     --outline-accent: oklch(from var(--color-accent-500) l c h / 0.75);
     --outline-accent-hover: oklch(from var(--color-accent-400) l c h / 0.75);

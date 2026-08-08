@@ -38,7 +38,7 @@ export const Section: React.FC<SectionProps> = ({
           {description && (
             <div>
               {typeof description === 'string' ? (
-                <Heading className='text-tertiary' size='h3'>
+                <Heading className='text-content-tertiary' size='h3'>
                   {description}
                 </Heading>
               ) : (

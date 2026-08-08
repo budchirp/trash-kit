@@ -25,7 +25,7 @@ export const Select: React.FC<SelectProps> = ({
     <Row
       className={cn(
         'min-h-10 w-full rounded-3xl overflow-hidden',
-        'bg-surface-primary text-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2 px-3 gap-3 transition duration-300',
+        'bg-surface-primary text-content-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2 px-3 gap-3 transition duration-300',
         disabled && 'opacity-50',
         className
       )}
@@ -41,7 +41,7 @@ export const Select: React.FC<SelectProps> = ({
       </select>
 
       <Center className='pointer-events-none max-h-8'>
-        <ChevronDown className='size-4 text-tertiary' />
+        <ChevronDown className='size-4 text-content-tertiary' />
       </Center>
     </Row>
   )

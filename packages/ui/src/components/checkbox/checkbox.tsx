@@ -22,7 +22,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   return (
     <label
       className={cn(
-        'inline-flex w-fit items-center gap-3 text-primary',
+        'inline-flex w-fit items-center gap-3 text-content-primary',
         disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
       )}
     >
@@ -43,7 +43,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           className
         )}
       >
-        <Check className='size-4 text-accent opacity-0 invisible' />
+        <Check className='size-4 text-surface-content-accent opacity-0 invisible' />
       </span>
 
       {children}

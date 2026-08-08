@@ -16,7 +16,7 @@ export const FileField: React.FC<FileFieldProps> = ({
       {...props}
       type='file'
       icons={{
-        leading: leading ?? <Upload className='size-4 shrink-0 text-tertiary' />,
+        leading: leading ?? <Upload className='size-4 shrink-0 text-content-tertiary' />,
         trailing: trailing
       }}
     />

@@ -20,7 +20,7 @@ export const Label: React.FC<LabelProps> = ({
     <label
       {...props}
       htmlFor={htmlFor ?? field?.name}
-      className={cn('text-sm font-semibold text-primary cursor-pointer', className)}
+      className={cn('text-sm font-semibold text-content-primary cursor-pointer', className)}
     >
       {children}
     </label>

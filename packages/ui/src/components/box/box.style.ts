@@ -5,9 +5,9 @@ export const boxStyle = cva(
   {
     variants: {
       color: {
-        primary: 'bg-surface-primary text-primary border-outline',
-        secondary: 'bg-surface-secondary text-primary border-outline',
-        accent: 'bg-surface-accent text-accent border-outline-accent'
+        primary: 'bg-surface-primary text-content-primary border-outline',
+        secondary: 'bg-surface-secondary text-content-primary border-outline',
+        accent: 'bg-surface-accent text-surface-content-accent border-outline-accent'
       },
       clickable: {
         true: 'cursor-pointer active:scale-99',

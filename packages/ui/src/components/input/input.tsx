@@ -23,7 +23,7 @@ export const Input: React.FC<InputProps> = ({
     <label
       className={cn(
         'min-h-10 flex items-center max-h-48 w-full rounded-3xl overflow-hidden',
-        'bg-surface-primary text-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2.5 px-4 gap-4 transition duration-300',
+        'bg-surface-primary text-content-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2.5 px-4 gap-4 transition duration-300',
         disabled && 'opacity-50',
         className
       )}
@@ -35,7 +35,7 @@ export const Input: React.FC<InputProps> = ({
         name={name ?? field?.name}
         id={id ?? field?.name}
         disabled={disabled}
-        className='size-full bg-transparent placeholder-tertiary disabled:cursor-not-allowed'
+        className='size-full bg-transparent placeholder:text-content-tertiary disabled:cursor-not-allowed'
       />
 
       {trailing && <Center className='max-h-8'>{trailing}</Center>}

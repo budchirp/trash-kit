@@ -86,22 +86,22 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
           />
 
           <Column className='gap-4 justify-center'>
-            <Upload className='size-12 text-tertiary' />
+            <Upload className='size-12 text-content-tertiary' />
 
             <Column>
               <Heading size='h3'>{children}</Heading>
               {description && files.length < 1 && (
-                <Heading size='h4' className='text-tertiary'>
+                <Heading size='h4' className='text-content-tertiary'>
                   {description}
                 </Heading>
               )}
 
               {files.length > 0 && (
-                <Column className='gap-1 text-tertiary'>
+                <Column className='gap-1 text-content-tertiary'>
                   {files.map((file) => (
                     <span
                       key={`${file.name}-${file.size}-${file.lastModified}`}
-                      className='truncate text-tertiary'
+                      className='truncate text-content-tertiary'
                     >
                       {file.name}
                     </span>

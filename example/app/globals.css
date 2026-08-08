@@ -41,5 +41,5 @@
 }
 
 body {
-  @apply bg-surface-primary text-primary;
+  @apply bg-surface-primary text-content-primary;
 }
