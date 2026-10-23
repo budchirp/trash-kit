@@ -16,5 +16,5 @@ export default defineConfig({
   },
   deps: {
     neverBundle: ['react', 'react-dom']
-  },
+  }
 })

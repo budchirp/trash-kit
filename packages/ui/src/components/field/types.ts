@@ -1,7 +1,13 @@
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
+
+import type { Orientation } from '@/lib/variants'
 
 export type FieldProps = ComponentProps<'div'> & {
   name: string
-  error?: Children
-  type?: 'column' | 'row'
+  id?: string
+  error?: ReactNode
+  orientation?: Orientation
+  disabled?: boolean
+  required?: boolean
+  contentClassName?: string
 }

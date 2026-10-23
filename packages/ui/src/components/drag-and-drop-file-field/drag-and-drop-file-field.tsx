@@ -1,12 +1,12 @@
 'use client'
 
 import type React from 'react'
-import { use, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
-import { FieldContext } from '@/components/field/context'
 import { Box, BoxContent } from '@/components/box'
-import { Heading } from '@/components/heading'
 import { Column } from '@/components/column'
+import { useOptionalFieldContext } from '@/components/field/context'
+import { Heading } from '@/components/heading'
 import { Upload } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
@@ -15,19 +15,23 @@ import type { DragAndDropFileFieldProps } from '@/components/drag-and-drop-file-
 export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
   children = 'Choose files',
   className,
+  contentClassName,
   description = 'Drag and drop files here, or click to browse.',
+  color,
   name,
   id,
   disabled,
+  required,
   onChange,
   onFiles,
   ...props
-}: DragAndDropFileFieldProps): Children => {
+}: DragAndDropFileFieldProps): React.ReactNode => {
   const [dragging, setDragging] = useState(false)
   const [files, setFiles] = useState<File[]>([])
 
-  const field = use(FieldContext)
+  const field = useOptionalFieldContext()
   const input = useRef<HTMLInputElement>(null)
+  const isDisabled = disabled ?? field?.disabled
 
   const setSelectedFiles = (fileList: FileList) => {
     setFiles(Array.from(fileList))
@@ -38,7 +42,7 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
     event.preventDefault()
     setDragging(false)
 
-    if (disabled || event.dataTransfer.files.length === 0) {
+    if (isDisabled || event.dataTransfer.files.length === 0) {
       return
     }
 
@@ -53,18 +57,19 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
     <label
       onDragEnter={(event) => {
         event.preventDefault()
-        setDragging(!disabled)
+        setDragging(!isDisabled)
       }}
       onDragOver={(event) => event.preventDefault()}
       onDragLeave={() => setDragging(false)}
       onDrop={handleDrop}
-      className={cn(disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer')}
+      className={cn(isDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer', className)}
     >
       <Box
+        color={color}
         className={cn(
-          'border-dashed hover:border-outline-accent',
+          'border-dashed hover:border-outline-hover',
           dragging && 'border-outline-accent',
-          className
+          contentClassName
         )}
       >
         <BoxContent padding='none' className='p-8'>
@@ -72,9 +77,12 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
             {...props}
             ref={input}
             name={name ?? field?.name}
-            id={id ?? field?.name}
+            id={id ?? field?.id}
             type='file'
-            disabled={disabled}
+            disabled={isDisabled}
+            required={required ?? field?.required}
+            aria-invalid={props['aria-invalid'] ?? field?.invalid}
+            aria-describedby={props['aria-describedby'] ?? field?.describedBy}
             onChange={(event) => {
               if (event.target.files) {
                 setSelectedFiles(event.target.files)
@@ -85,23 +93,23 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
             className='sr-only'
           />
 
-          <Column className='gap-4 justify-center'>
-            <Upload className='size-12 text-content-tertiary' />
+          <Column className='justify-center gap-4'>
+            <Upload className='size-12 opacity-60' />
 
             <Column>
               <Heading size='h3'>{children}</Heading>
               {description && files.length < 1 && (
-                <Heading size='h4' className='text-content-tertiary'>
+                <Heading size='h4' className='opacity-60'>
                   {description}
                 </Heading>
               )}
 
               {files.length > 0 && (
-                <Column className='gap-1 text-content-tertiary'>
+                <Column className='gap-1 opacity-60'>
                   {files.map((file) => (
                     <span
                       key={`${file.name}-${file.size}-${file.lastModified}`}
-                      className='truncate text-content-tertiary'
+                      className='truncate'
                     >
                       {file.name}
                     </span>
@@ -115,4 +123,3 @@ export const DragAndDropFileField: React.FC<DragAndDropFileFieldProps> = ({
     </label>
   )
 }
-DragAndDropFileField.displayName = 'DragAndDropFileField'

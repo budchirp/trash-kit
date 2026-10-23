@@ -4,6 +4,4 @@ import type { VariantProps } from 'class-variance-authority'
 
 import type { dividerStyle } from '@/components/divider/divider.style'
 
-export type DividerProps = ComponentProps<'div'> & {
-  className?: string
-} & VariantProps<typeof dividerStyle>
+export type DividerProps = ComponentProps<'hr'> & VariantProps<typeof dividerStyle>

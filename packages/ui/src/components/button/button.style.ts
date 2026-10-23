@@ -1,12 +1,12 @@
 import { cva } from 'class-variance-authority'
 
 export const buttonStyle = cva(
-  'flex items-center justify-center rounded-full cursor-pointer w-fit font-medium transition-all duration-300 border active:scale-95 disabled:opacity-50 disabled:pointer-events-none',
+  'flex items-center justify-center gap-2 rounded-full cursor-pointer w-fit font-medium transition-all duration-300 border active:scale-95 disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       shape: {
         default: 'px-4 py-1',
-        circle: 'p-2 aspect-square'
+        circle: 'size-10 shrink-0 p-0'
       },
       color: {
         accent:
@@ -15,7 +15,12 @@ export const buttonStyle = cva(
           'bg-surface-primary hover:bg-surface-secondary text-content-primary border-outline hover:border-outline-hover',
         secondary:
           'bg-surface-secondary hover:bg-surface-tertiary text-content-primary border-outline hover:border-outline-hover',
-        danger: 'bg-red-600 hover:bg-red-700 text-red-50 border-red-500 hover:border-red-600'
+        danger:
+          'bg-surface-danger hover:bg-surface-danger-hover text-surface-content-danger border-outline-danger hover:border-outline-danger-hover',
+        success:
+          'bg-surface-success hover:bg-surface-success-hover text-surface-content-success border-outline-success hover:border-outline-success-hover',
+        warning:
+          'bg-surface-warning hover:bg-surface-warning-hover text-surface-content-warning border-outline-warning hover:border-outline-warning-hover'
       }
     },
     defaultVariants: {

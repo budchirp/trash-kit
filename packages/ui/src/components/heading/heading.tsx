@@ -10,13 +10,12 @@ export const Heading: React.FC<HeadingProps> = ({
   children,
   className,
   size,
-  color,
   ...props
-}: HeadingProps): Children => {
+}: HeadingProps): React.ReactNode => {
   const Component = as ?? size ?? 'h2'
 
   return (
-    <Component {...props} className={cn(headingStyle({ size, color, className }))}>
+    <Component {...props} className={cn(headingStyle({ size, className }))}>
       {children}
     </Component>
   )

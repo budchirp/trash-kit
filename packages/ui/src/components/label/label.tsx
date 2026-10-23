@@ -1,9 +1,8 @@
 'use client'
 
 import type React from 'react'
-import { use } from 'react'
 
-import { FieldContext } from '@/components/field/context'
+import { useOptionalFieldContext } from '@/components/field/context'
 import { cn } from '@/lib/cn'
 
 import type { LabelProps } from '@/components/label/types'
@@ -13,14 +12,14 @@ export const Label: React.FC<LabelProps> = ({
   className,
   htmlFor,
   ...props
-}: LabelProps): Children => {
-  const field = use(FieldContext)
+}: LabelProps): React.ReactNode => {
+  const field = useOptionalFieldContext()
 
   return (
     <label
       {...props}
-      htmlFor={htmlFor ?? field?.name}
-      className={cn('text-sm font-semibold text-content-primary cursor-pointer', className)}
+      htmlFor={htmlFor ?? field?.id}
+      className={cn('text-sm font-semibold cursor-pointer', className)}
     >
       {children}
     </label>

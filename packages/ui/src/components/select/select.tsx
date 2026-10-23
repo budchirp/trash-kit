@@ -1,49 +1,57 @@
 'use client'
 
 import type React from 'react'
-import { use } from 'react'
 
-import { FieldContext } from '@/components/field/context'
 import { Center } from '@/components/center'
+import { useOptionalFieldContext } from '@/components/field/context'
 import { Row } from '@/components/row'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/cn'
+
+import { inputWrapperStyle } from '@/components/input/input.style'
 
 import type { SelectProps } from '@/components/select/types'
 
 export const Select: React.FC<SelectProps> = ({
   children,
   className,
+  selectClassName,
   name,
   id,
   disabled,
+  required,
   ...props
-}: SelectProps): Children => {
-  const field = use(FieldContext)
+}: SelectProps): React.ReactNode => {
+  const field = useOptionalFieldContext()
+  const isDisabled = disabled ?? field?.disabled
 
   return (
     <Row
       className={cn(
-        'min-h-10 w-full rounded-3xl overflow-hidden',
-        'bg-surface-primary text-content-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2 px-3 gap-3 transition duration-300',
-        disabled && 'opacity-50',
+        inputWrapperStyle({ color: 'secondary', disabled: isDisabled }),
+        'min-h-10 items-center gap-3 px-3 py-2',
         className
       )}
     >
       <select
         {...props}
         name={name ?? field?.name}
-        id={id ?? field?.name}
-        disabled={disabled}
-        className='size-full bg-transparent disabled:cursor-not-allowed'
+        id={id ?? field?.id}
+        disabled={isDisabled}
+        required={required ?? field?.required}
+        aria-invalid={props['aria-invalid'] ?? field?.invalid}
+        aria-describedby={props['aria-describedby'] ?? field?.describedBy}
+        className={cn(
+          'size-full bg-transparent outline-none disabled:cursor-not-allowed',
+          selectClassName
+        )}
       >
         {children}
       </select>
 
       <Center className='pointer-events-none max-h-8'>
-        <ChevronDown className='size-4 text-content-tertiary' />
+        <ChevronDown className='size-4 shrink-0 opacity-60' />
       </Center>
     </Row>
   )
 }
-Select.displayName = 'Select'

@@ -10,20 +10,25 @@ export const Tag: React.FC<TagProps> = ({
   className,
   color,
   clickable,
+  disabled,
+  as,
   ...props
-}: TagProps): Children => {
+}: TagProps): React.ReactNode => {
+  const Component = (as ?? 'span') as React.ElementType
+
   return (
-    <div
+    <Component
       {...props}
       className={cn(
         boxStyle({
           color,
           clickable,
-          className: cn('px-3 py-1 w-fit rounded-xl', className)
+          disabled,
+          className: cn('inline-flex items-center px-3 py-1 w-fit rounded-xl', className)
         })
       )}
     >
       {children}
-    </div>
+    </Component>
   )
 }

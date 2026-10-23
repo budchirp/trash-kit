@@ -1,5 +1,3 @@
 import type { ComponentProps } from 'react'
 
-export type TextProps = ComponentProps<'p'> & {
-  children?: Children
-}
+export type TextProps = ComponentProps<'p'>

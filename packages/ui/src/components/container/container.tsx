@@ -8,7 +8,7 @@ export const Container: React.FC<ContainerProps> = ({
   children,
   className,
   ...props
-}: ContainerProps): Children => {
+}: ContainerProps): React.ReactNode => {
   return (
     <div
       {...props}

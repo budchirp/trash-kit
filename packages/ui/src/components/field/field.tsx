@@ -2,7 +2,7 @@
 
 import type React from 'react'
 
-import { FieldContext } from '@/components/field/context'
+import { FieldProvider } from '@/components/field/context'
 import { Column } from '@/components/column'
 import { cn } from '@/lib/cn'
 
@@ -11,26 +11,44 @@ import type { FieldProps } from '@/components/field/types'
 export const Field: React.FC<FieldProps> = ({
   children,
   className,
-  type,
+  contentClassName,
+  orientation = 'vertical',
   error,
   name,
+  id,
+  disabled,
+  required,
   ...props
-}: FieldProps): Children => {
+}: FieldProps): React.ReactNode => {
+  const fieldId = id ?? name
+
   return (
-    <FieldContext.Provider value={{ name }}>
-      <Column className='gap-1'>
+    <FieldProvider
+      value={{
+        id: fieldId,
+        name,
+        disabled,
+        required,
+        invalid: Boolean(error),
+        describedBy: error ? `${fieldId}-error` : undefined
+      }}
+    >
+      <Column {...props} className={cn('gap-1', className)}>
         <Column
-          {...props}
           className={cn(
-            type === 'row' ? 'flex-row items-center gap-3' : 'flex-col gap-1',
-            className
+            orientation === 'horizontal' ? 'flex-row items-center gap-3' : 'flex-col gap-1',
+            contentClassName
           )}
         >
           {children}
         </Column>
 
-        {error && <div className='text-sm text-red-500'>{error}</div>}
+        {error && (
+          <div id={`${fieldId}-error`} className='text-sm text-content-danger'>
+            {error}
+          </div>
+        )}
       </Column>
-    </FieldContext.Provider>
+    </FieldProvider>
   )
 }

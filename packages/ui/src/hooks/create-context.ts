@@ -10,7 +10,8 @@ export type CreateContextProps<T> = {
 export type CreateContextReturnProps<T> = [
   Provider<T | null | undefined>,
   () => T,
-  Context<T | null | undefined>
+  Context<T | null | undefined>,
+  () => T | null | undefined
 ]
 
 export const createContext = <T>({
@@ -28,5 +29,7 @@ export const createContext = <T>({
     return context
   }
 
-  return [Context.Provider, useContext, Context]
+  const useOptionalContext = (): T | null | undefined => use(Context)
+
+  return [Context.Provider, useContext, Context, useOptionalContext]
 }

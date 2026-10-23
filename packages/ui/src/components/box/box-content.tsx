@@ -11,7 +11,7 @@ export const BoxContent: React.FC<BoxContentProps> = ({
   className,
   padding,
   ...props
-}: BoxContentProps): Children => {
+}: BoxContentProps): React.ReactNode => {
   return (
     <Column {...props} className={cn(boxContentStyle({ padding, className }))}>
       {children}

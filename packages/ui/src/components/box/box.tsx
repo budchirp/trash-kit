@@ -10,10 +10,11 @@ export const Box: React.FC<BoxProps> = ({
   className,
   color,
   clickable,
+  disabled,
   ...props
-}: BoxProps): Children => {
+}: BoxProps): React.ReactNode => {
   return (
-    <div {...props} className={cn(boxStyle({ color, clickable, className }))}>
+    <div {...props} className={cn(boxStyle({ color, clickable, disabled, className }))}>
       {children}
     </div>
   )

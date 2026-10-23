@@ -1,9 +1,17 @@
 'use client'
 
-import { createContext } from 'react'
+import { createContext } from '@/hooks/create-context'
 
 export type FieldContextValue = {
+  id: string
   name: string
+  disabled?: boolean
+  required?: boolean
+  invalid?: boolean
+  describedBy?: string
 }
 
-export const FieldContext = createContext<FieldContextValue | null>(null)
+export const [FieldProvider, useFieldContext, FieldContext, useOptionalFieldContext] =
+  createContext<FieldContextValue>({
+    name: 'Field'
+  })

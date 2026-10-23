@@ -1,5 +1,6 @@
-import type { InputProps } from '@/components/input'
+import type { ComponentProps } from 'react'
 
-export type FileFieldProps = Omit<InputProps, 'type'> & {
-  children?: Children
-}
+import type { InputSharedProps } from '@/components/input'
+
+export type FileFieldProps = InputSharedProps &
+  Omit<ComponentProps<'input'>, 'children' | 'color' | 'type'>

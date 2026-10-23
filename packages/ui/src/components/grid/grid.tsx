@@ -8,7 +8,7 @@ export const Grid: React.FC<GridProps> = ({
   children,
   className,
   ...props
-}: GridProps): Children => {
+}: GridProps): React.ReactNode => {
   return (
     <div
       {...props}

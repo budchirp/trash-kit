@@ -10,16 +10,15 @@ import type { FileFieldProps } from '@/components/file-field/types'
 export const FileField: React.FC<FileFieldProps> = ({
   icons: { leading, trailing } = {},
   ...props
-}: FileFieldProps): Children => {
+}: FileFieldProps): React.ReactNode => {
   return (
     <Input
       {...props}
       type='file'
       icons={{
-        leading: leading ?? <Upload className='size-4 shrink-0 text-content-tertiary' />,
+        leading: leading ?? <Upload className='size-4 shrink-0 opacity-60' />,
         trailing: trailing
       }}
     />
   )
 }
-FileField.displayName = 'FileField'

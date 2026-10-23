@@ -1,0 +1,5 @@
+export * from '@/components/tabs/tabs'
+export * from '@/components/tabs/tabs-content'
+export * from '@/components/tabs/tabs-list'
+export * from '@/components/tabs/tabs-trigger'
+export * from '@/components/tabs/types'

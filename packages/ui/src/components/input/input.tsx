@@ -1,45 +1,66 @@
 'use client'
 
 import type React from 'react'
-import { use } from 'react'
+import { useId } from 'react'
 
-import { FieldContext } from '@/components/field/context'
 import { Center } from '@/components/center'
+import { useOptionalFieldContext } from '@/components/field/context'
 import { cn } from '@/lib/cn'
+
+import {
+  inputElementStyle,
+  inputWrapperStyle,
+  textareaElementStyle
+} from '@/components/input/input.style'
 
 import type { InputProps } from '@/components/input/types'
 
 export const Input: React.FC<InputProps> = ({
   className,
+  inputClassName,
+  icons: { leading, trailing } = {},
+  color,
   name,
   id,
   disabled,
-  icons: { leading, trailing } = {},
+  required,
+  textarea = false,
   ...props
-}: InputProps): Children => {
-  const field = use(FieldContext)
+}: InputProps): React.ReactNode => {
+  const field = useOptionalFieldContext()
+  const generatedId = useId()
+  const isDisabled = disabled ?? field?.disabled
+  const fieldId = id ?? field?.id ?? generatedId
+
+  const sharedProps = {
+    name: name ?? field?.name,
+    id: fieldId,
+    disabled: isDisabled,
+    required: required ?? field?.required,
+    'aria-invalid': props['aria-invalid'] ?? field?.invalid,
+    'aria-describedby': props['aria-describedby'] ?? field?.describedBy,
+    className: cn(inputElementStyle, textarea && textareaElementStyle, inputClassName)
+  }
 
   return (
     <label
+      htmlFor={fieldId}
       className={cn(
-        'min-h-10 flex items-center max-h-48 w-full rounded-3xl overflow-hidden',
-        'bg-surface-primary text-content-primary border border-outline hover:border-outline-hover focus-within:border-outline-hover py-2.5 px-4 gap-4 transition duration-300',
-        disabled && 'opacity-50',
+        inputWrapperStyle({ color, disabled: isDisabled }),
+        textarea ? 'min-h-24 items-start py-3' : 'min-h-10 items-center py-2.5',
+        'gap-4 px-4',
         className
       )}
     >
       {leading && <Center className='max-h-8 aspect-square'>{leading}</Center>}
 
-      <input
-        {...props}
-        name={name ?? field?.name}
-        id={id ?? field?.name}
-        disabled={disabled}
-        className='size-full bg-transparent placeholder:text-content-tertiary disabled:cursor-not-allowed'
-      />
+      {textarea ? (
+        <textarea {...(props as React.ComponentProps<'textarea'>)} {...sharedProps} />
+      ) : (
+        <input {...(props as React.ComponentProps<'input'>)} {...sharedProps} />
+      )}
 
       {trailing && <Center className='max-h-8'>{trailing}</Center>}
     </label>
   )
 }
-Input.displayName = 'Input'

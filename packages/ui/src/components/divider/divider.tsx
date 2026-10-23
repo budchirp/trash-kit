@@ -10,6 +10,12 @@ export const Divider: React.FC<DividerProps> = ({
   orientation,
   thickness,
   ...props
-}: DividerProps): Children => {
-  return <div {...props} className={cn(dividerStyle({ orientation, thickness, className }))} />
+}: DividerProps): React.ReactNode => {
+  return (
+    <hr
+      {...props}
+      aria-orientation={orientation ?? 'horizontal'}
+      className={cn(dividerStyle({ orientation, thickness, className }))}
+    />
+  )
 }

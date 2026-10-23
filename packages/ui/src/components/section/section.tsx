@@ -5,6 +5,7 @@ import { cn } from '@/lib/cn'
 import { Heading } from '@/components/heading'
 import { Divider } from '@/components/divider'
 import { Column } from '@/components/column'
+import { Text } from '@/components/text'
 
 import type { SectionProps } from '@/components/section/types'
 
@@ -15,9 +16,9 @@ export const Section: React.FC<SectionProps> = ({
   description,
   subsection = false,
   divider = !subsection && !!title,
-  columnClassName,
+  contentClassName,
   ...props
-}: SectionProps): Children => {
+}: SectionProps): React.ReactNode => {
   return (
     <Column
       {...props}
@@ -36,15 +37,7 @@ export const Section: React.FC<SectionProps> = ({
           )}
 
           {description && (
-            <div>
-              {typeof description === 'string' ? (
-                <Heading className='text-content-tertiary' size='h3'>
-                  {description}
-                </Heading>
-              ) : (
-                description
-              )}
-            </div>
+            <div>{typeof description === 'string' ? <Text>{description}</Text> : description}</div>
           )}
         </Column>
       )}
@@ -52,7 +45,7 @@ export const Section: React.FC<SectionProps> = ({
       {divider && <Divider thickness='thick' />}
 
       <Column
-        className={cn(!subsection && (title || description) ? 'mt-2' : '', columnClassName)}
+        className={cn(!subsection && (title || description) ? 'mt-2' : '', contentClassName)}
         padding={!divider && !(title || description) ? 'lg' : 'none'}
       >
         {children}

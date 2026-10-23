@@ -1,7 +1,13 @@
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
-export type DragAndDropFileFieldProps = ComponentProps<'input'> & {
-  children?: Children
-  description?: Children
-  onFiles?: (files: FileList) => void
-}
+import type { VariantProps } from 'class-variance-authority'
+
+import type { boxStyle } from '@/components/box/box.style'
+
+export type DragAndDropFileFieldProps = Omit<ComponentProps<'input'>, 'children' | 'color'> &
+  Pick<VariantProps<typeof boxStyle>, 'color'> & {
+    children?: ReactNode
+    description?: ReactNode
+    contentClassName?: string
+    onFiles?: (files: FileList) => void
+  }

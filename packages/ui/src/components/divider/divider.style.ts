@@ -7,7 +7,7 @@ export const dividerStyle = cva('block border-0 bg-outline rounded-full', {
       thick: ''
     },
     orientation: {
-      horizontal: 'w-full px-4',
+      horizontal: 'w-full',
       vertical: 'h-full'
     }
   },

@@ -1,49 +1,51 @@
 'use client'
 
 import type React from 'react'
-import { use } from 'react'
 
-import { FieldContext } from '@/components/field/context'
 import { Check } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { useOptionalFieldContext } from '@/components/field/context'
+
+import { checkboxIndicatorStyle } from '@/components/checkbox/checkbox.style'
 
 import type { CheckboxProps } from '@/components/checkbox/types'
 
 export const Checkbox: React.FC<CheckboxProps> = ({
   children,
   className,
+  indicatorClassName,
+  color,
   name,
   id,
   disabled,
+  required,
   ...props
-}: CheckboxProps): Children => {
-  const field = use(FieldContext)
+}: CheckboxProps): React.ReactNode => {
+  const field = useOptionalFieldContext()
+  const isDisabled = disabled ?? field?.disabled
 
   return (
     <label
       className={cn(
-        'inline-flex w-fit items-center gap-3 text-content-primary',
-        disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+        'inline-flex w-fit items-center gap-3',
+        isDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+        className
       )}
     >
       <input
         {...props}
         name={name ?? field?.name}
-        id={id ?? field?.name}
+        id={id ?? field?.id}
         type='checkbox'
-        disabled={disabled}
+        disabled={isDisabled}
+        required={required ?? field?.required}
+        aria-invalid={props['aria-invalid'] ?? field?.invalid}
+        aria-describedby={props['aria-describedby'] ?? field?.describedBy}
         className='peer sr-only'
       />
 
-      <span
-        className={cn(
-          'size-6 flex shrink-0 items-center justify-center bg-surface-secondary relative border border-outline rounded-full p-1',
-          'peer-checked:bg-surface-accent peer-checked:border-outline-accent peer-checked:hover:border-outline-accent-hover',
-          'peer-checked:[&>svg]:visible peer-checked:[&>svg]:opacity-100',
-          className
-        )}
-      >
-        <Check className='size-4 text-surface-content-accent opacity-0 invisible' />
+      <span className={cn(checkboxIndicatorStyle({ color }), indicatorClassName)}>
+        <Check className='invisible size-4 opacity-0' />
       </span>
 
       {children}

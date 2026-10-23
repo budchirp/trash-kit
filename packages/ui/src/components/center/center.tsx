@@ -9,7 +9,7 @@ export const Center: React.FC<CenterProps> = ({
   children,
   className,
   ...props
-}: CenterProps): Children => {
+}: CenterProps): React.ReactNode => {
   return (
     <Column {...props} className={cn('justify-center items-center text-center w-fit', className)}>
       {children}

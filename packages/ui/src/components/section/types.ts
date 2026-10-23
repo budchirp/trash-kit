@@ -1,10 +1,9 @@
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
 export type SectionProps = Omit<ComponentProps<'div'>, 'title'> & {
-  children?: Children
-  title?: Children
-  description?: Children
+  title?: ReactNode
+  description?: ReactNode
   divider?: boolean
   subsection?: boolean
-  columnClassName?: string
+  contentClassName?: string
 }
